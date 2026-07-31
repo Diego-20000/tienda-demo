@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Historial de pedidos — Panel Abriendo Caminos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="demo-banner">
+  🔧 <strong>Demo de prototipo</strong> — datos guardados solo en este navegador.
+  <button data-reset-demo>Reiniciar demo</button>
+</div>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="brand"><span class="logo-mark">AC</span> Abriendo Caminos</div>
+    <nav>
+      <a href="pedidos.html" data-admin-nav="pedidos">📥 Pedidos por confirmar</a>
+      <a href="historial.html" data-admin-nav="historial">📋 Historial</a>
+      <a href="../index.html">🛍️ Ver tienda</a>
+      <a href="#" data-admin-logout>🚪 Salir</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div>
+        <h1 style="margin-bottom:2px;">Historial de pedidos</h1>
+        <p class="text-muted" style="margin:0;">Todos los pedidos creados en esta demo, en cualquier estado.</p>
+      </div>
+    </div>
+    <div id="history-wrap"></div>
+  </main>
+</div>
+
+<script src="../assets/js/placeholders.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/store.js"></script>
+<script src="../assets/js/admin.js"></script>
+<script src="../assets/js/admin-historial.js"></script>
+</body>
+</html>
