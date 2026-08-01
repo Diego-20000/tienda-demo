@@ -10,6 +10,9 @@ const LS_CART = 'ac_cart';
 const LS_ORDERS = 'ac_orders';
 const LS_SEQ = 'ac_order_seq';
 const LS_ADMIN = 'ac_admin_session';
+const LS_PRODUCTS = 'ac_products';
+const LS_CATEGORIES = 'ac_categories';
+const LS_PRODUCT_SEQ = 'ac_product_seq';
 const RESERVA_MIN = 15;
 
 const ALIAS_MP = 'abriendocaminos.mp';
@@ -26,6 +29,86 @@ function readLS(key, fallback) {
 }
 function writeLS(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
+}
+
+// ---------- catálogo (productos + categorías) ----------
+// Se "seedea" una sola vez desde data.js. A partir de ahí el panel
+// admin lee y escribe acá — así los cambios se ven en vivo en la tienda.
+function initCatalog() {
+  if (localStorage.getItem(LS_PRODUCTS) === null) writeLS(LS_PRODUCTS, SEED_PRODUCTS);
+  if (localStorage.getItem(LS_CATEGORIES) === null) writeLS(LS_CATEGORIES, SEED_CATEGORIES);
+}
+initCatalog();
+
+function getProducts() {
+  return readLS(LS_PRODUCTS, SEED_PRODUCTS);
+}
+function getCategories() {
+  return readLS(LS_CATEGORIES, SEED_CATEGORIES);
+}
+function getProduct(id) {
+  return getProducts().find((p) => p.id === id);
+}
+function categoryLabel(slug) {
+  const c = getCategories().find((c) => c.slug === slug);
+  return c ? c.label : slug;
+}
+function nextProductId() {
+  const seq = readLS(LS_PRODUCT_SEQ, 100) + 1;
+  writeLS(LS_PRODUCT_SEQ, seq);
+  return 'pc' + seq;
+}
+function saveProduct(product) {
+  const products = getProducts();
+  if (product.id) {
+    const idx = products.findIndex((p) => p.id === product.id);
+    if (idx >= 0) products[idx] = { ...products[idx], ...product };
+    else products.push(product);
+  } else {
+    product.id = nextProductId();
+    products.push(product);
+  }
+  writeLS(LS_PRODUCTS, products);
+  return product;
+}
+function deleteProduct(id) {
+  writeLS(LS_PRODUCTS, getProducts().filter((p) => p.id !== id));
+}
+function productCount(categorySlug) {
+  return getProducts().filter((p) => p.category === categorySlug).length;
+}
+function slugify(text) {
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '') || 'categoria';
+}
+function saveCategory(label, existingSlug) {
+  const categories = getCategories();
+  if (existingSlug) {
+    const cat = categories.find((c) => c.slug === existingSlug);
+    if (cat) cat.label = label;
+  } else {
+    let slug = slugify(label);
+    let n = 2;
+    while (categories.some((c) => c.slug === slug)) {
+      slug = slugify(label) + '-' + n++;
+    }
+    categories.push({ slug, label });
+  }
+  writeLS(LS_CATEGORIES, categories);
+}
+function deleteCategory(slug) {
+  if (productCount(slug) > 0) return false;
+  writeLS(LS_CATEGORIES, getCategories().filter((c) => c.slug !== slug));
+  return true;
+}
+function resetCatalog() {
+  writeLS(LS_PRODUCTS, SEED_PRODUCTS);
+  writeLS(LS_CATEGORIES, SEED_CATEGORIES);
+  localStorage.removeItem(LS_PRODUCT_SEQ);
 }
 
 // ---------- carrito ----------

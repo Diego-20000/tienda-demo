@@ -5,7 +5,7 @@ let searchTerm = '';
 
 function renderCategoryFilters() {
   const wrap = document.getElementById('category-filters');
-  CATEGORIES.forEach((c) => {
+  getCategories().forEach((c) => {
     const btn = document.createElement('button');
     btn.textContent = c.label;
     btn.dataset.cat = c.slug;
@@ -30,7 +30,7 @@ function renderGrid() {
   const noResults = document.getElementById('no-results');
   grid.innerHTML = '';
 
-  const filtered = PRODUCTS.filter((p) => {
+  const filtered = getProducts().filter((p) => {
     const matchesCat = activeCategory === 'all' || p.category === activeCategory;
     const matchesSearch = !searchTerm || p.name.toLowerCase().includes(searchTerm) || p.desc.toLowerCase().includes(searchTerm);
     return matchesCat && matchesSearch;

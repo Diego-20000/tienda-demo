@@ -1,9 +1,9 @@
 /* ============================================================
    Generador de imágenes placeholder (SVG, 100% local, sin red).
    Dibuja una silueta simple por categoría sobre un fondo con
-   degradé pastel. Se reemplaza fácil por fotos reales: solo
-   hay que poner una URL de imagen real en el campo "img" de
-   cada producto en data.js.
+   degradé pastel. Si un producto tiene foto real (campo "img"
+   subido desde el panel admin), esa imagen se usa en su lugar
+   — ver productImage() más abajo.
    ============================================================ */
 
 const PLACEHOLDER_PALETTES = [
@@ -20,39 +20,38 @@ function paletteFor(seed) {
 
 // Siluetas simples por categoría, dibujadas a mano con formas básicas
 const CATEGORY_ICONS = {
-  mates: (c) => `
-    <ellipse cx="200" cy="255" rx="70" ry="66" fill="${c}" opacity=".9"/>
-    <rect x="176" y="150" width="16" height="90" rx="8" fill="${c}" transform="rotate(-18 184 195)"/>
-    <circle cx="146" cy="140" r="7" fill="${c}"/>
+  conservas: (c) => `
+    <rect x="150" y="148" width="100" height="28" rx="6" fill="${c}"/>
+    <rect x="138" y="172" width="124" height="112" rx="16" fill="${c}" opacity=".9"/>
+    <rect x="152" y="196" width="96" height="52" rx="8" fill="#fff" opacity=".3"/>
   `,
-  tazas: (c) => `
-    <rect x="140" y="180" width="120" height="90" rx="16" fill="${c}" opacity=".9"/>
-    <path d="M260 195 h26 a24 24 0 0 1 0 60 h-26" fill="none" stroke="${c}" stroke-width="14"/>
+  dulces: (c) => `
+    <circle cx="163" cy="222" r="42" fill="${c}" opacity=".9"/>
+    <circle cx="237" cy="222" r="42" fill="${c}" opacity=".65"/>
+    <circle cx="158" cy="210" r="4" fill="#fff" opacity=".55"/>
+    <circle cx="174" cy="230" r="4" fill="#fff" opacity=".55"/>
+    <circle cx="148" cy="230" r="4" fill="#fff" opacity=".55"/>
+    <circle cx="230" cy="212" r="4" fill="#fff" opacity=".45"/>
+    <circle cx="246" cy="230" r="4" fill="#fff" opacity=".45"/>
   `,
-  tazones: (c) => `
-    <path d="M120 210 h160 a80 60 0 0 1 -160 0 z" fill="${c}" opacity=".9"/>
-    <ellipse cx="200" cy="210" rx="80" ry="16" fill="${c}"/>
-  `,
-  platitos: (c) => `
-    <ellipse cx="200" cy="235" rx="105" ry="30" fill="${c}" opacity=".9"/>
-    <ellipse cx="200" cy="228" rx="70" ry="18" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="4"/>
-  `,
-  'juegos-de-te': (c) => `
-    <path d="M130 220 h140 a20 40 0 0 1 -20 50 h-100 a20 40 0 0 1 -20 -50 z" fill="${c}" opacity=".9"/>
-    <path d="M270 225 h20 a18 18 0 0 1 0 36 h-20" fill="none" stroke="${c}" stroke-width="10"/>
-    <rect x="185" y="185" width="10" height="30" rx="4" fill="${c}"/>
-    <circle cx="190" cy="178" r="9" fill="${c}"/>
+  licores: (c) => `
+    <rect x="186" y="138" width="28" height="34" rx="6" fill="${c}"/>
+    <path d="M172 172 h56 l10 28 v78 a10 10 0 0 1 -10 10 h-56 a10 10 0 0 1 -10 -10 v-78 z" fill="${c}" opacity=".9"/>
+    <rect x="172" y="222" width="56" height="26" fill="#fff" opacity=".22"/>
   `,
   combos: (c) => `
     <rect x="130" y="190" width="140" height="100" rx="10" fill="${c}" opacity=".9"/>
     <rect x="130" y="190" width="140" height="26" fill="#fff" opacity=".35"/>
     <rect x="190" y="190" width="20" height="100" fill="#fff" opacity=".35"/>
   `,
+  default: (c) => `
+    <circle cx="200" cy="220" r="70" fill="${c}" opacity=".85"/>
+  `,
 };
 
 function productPlaceholderDataUri(category, seed) {
   const [bg, fg] = paletteFor(seed);
-  const iconFn = CATEGORY_ICONS[category] || CATEGORY_ICONS.tazas;
+  const iconFn = CATEGORY_ICONS[category] || CATEGORY_ICONS.default;
   const svg = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
   <defs>
@@ -65,4 +64,10 @@ function productPlaceholderDataUri(category, seed) {
   ${iconFn(fg)}
 </svg>`.trim();
   return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+
+function productImage(product) {
+  if (product.img) return product.img;
+  const numeric = parseInt(String(product.id).replace(/\D/g, ''), 10) || 0;
+  return productPlaceholderDataUri(product.category, numeric);
 }
