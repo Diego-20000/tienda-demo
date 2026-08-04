@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  document.title = product.name + ' — Abriendo Caminos';
+  document.title = product.name + ' — Dulce Cosecha';
 
   wrap.innerHTML = `
     <div class="gallery"><img src="${productImage(product)}" alt="${product.name}"></div>

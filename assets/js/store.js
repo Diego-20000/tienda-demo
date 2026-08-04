@@ -15,8 +15,8 @@ const LS_CATEGORIES = 'ac_categories';
 const LS_PRODUCT_SEQ = 'ac_product_seq';
 const RESERVA_MIN = 15;
 
-const ALIAS_MP = 'abriendocaminos.mp';
-const WHATSAPP = '2241 515744';
+const ALIAS_MP = 'dulcecosecha.mp';
+const WHATSAPP = '11 5555-5555';
 
 // ---------- helpers genéricos ----------
 function readLS(key, fallback) {

@@ -38,8 +38,8 @@ function showEmailPreviewModal(order) {
           <p>Confirmamos tu pago del pedido <strong>${order.id}</strong>:</p>
           <ul>${order.items.map((i) => `<li>${i.qty} × ${i.name}</li>`).join('')}</ul>
           <p><strong>Total: ${formatARS(order.monto_total)}</strong></p>
-          <p>Retiro en feria — Costanera Club / Comité Radical.<br>Sábados 10 a 19h · domingos y feriados 10 a 18h.</p>
-          <p>¡Gracias por elegirnos!<br>Abriendo Caminos</p>
+          <p>Retiro en feria — Plaza San Martín — Villa Origen.<br>Sábados 10 a 19h · domingos y feriados 10 a 18h.</p>
+          <p>¡Gracias por elegirnos!<br>Dulce Cosecha</p>
         </div>
       </div>
     </div>

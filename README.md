@@ -1,8 +1,8 @@
-# Abriendo Caminos — demo de tienda online
+# Dulce Cosecha — demo de tienda online
 
-Prototipo **solo de frontend** para mostrarle el flujo completo a Priscila antes de arrancar el desarrollo real (Node + Express + PostgreSQL, ver spec técnica del proyecto). No hay backend, base de datos, pagos ni mails reales: todo corre en el navegador con `localStorage`, así que sirve para ver y clickear las pantallas, no para vender de verdad.
+Prototipo **solo de frontend** de una tienda online para un emprendimiento de feria (conservas, dulces y licores artesanales), pensado como pieza de demo/portfolio: catálogo, carrito, checkout con pago por transferencia y confirmación manual desde un panel de administración. No hay backend, base de datos, pagos ni mails reales: todo corre en el navegador con `localStorage`, así que sirve para ver y clickear las pantallas, no para vender de verdad.
 
-**Rubro:** conservas, dulces y licores artesanales (mermeladas, escabeches, alfajores, licores caseros, combos de regalo).
+Marca, productos, contacto y ubicación son **ficticios**, armados para que la demo se vea como una tienda real.
 
 ## Qué incluye
 
@@ -10,22 +10,22 @@ Prototipo **solo de frontend** para mostrarle el flujo completo a Priscila antes
 - Catálogo con ~26 productos de ejemplo (conservas, dulces, licores, combos), buscador y filtro por categoría.
 - Detalle de producto con selector de cantidad.
 - Carrito editable.
-- Checkout: datos del cliente → alias de Mercado Pago + monto exacto + cuenta regresiva de reserva de stock (15 min, igual que en la spec) → subida de comprobante.
+- Checkout: datos del cliente → alias de Mercado Pago + monto exacto + cuenta regresiva de reserva de stock (15 min) → subida de comprobante.
 - Pantalla de estado del pedido (pendiente / confirmado / cancelado por vencimiento), con vista previa del mail automático.
-- Adaptado para mobile (Priscila lo ve desde el celu).
+- Responsive, pensado para verse bien también desde el celular.
 
 **Panel de administración** (`/admin`, login simulado — cualquier usuario/contraseña entra):
 - **Pedidos por confirmar**: comprobante subido, botón para confirmar el pago a mano.
-- **Productos**: agregar, editar y borrar productos (con foto propia opcional), y gestionar categorías (crear, renombrar, borrar). Los cambios se ven al toque en la tienda — es la forma de que Priscila pruebe cómo sería cargar su propio catálogo.
+- **Productos**: agregar, editar y borrar productos (con foto propia opcional), y gestionar categorías (crear, renombrar, borrar). Los cambios se ven al toque en la tienda.
 - **Historial**: todos los pedidos con su estado y comprobante.
 
-Los estados del pedido replican la spec: `pendiente_pago → pendiente_confirmar → pagado_confirmado`, o `cancelado` si se vencen los 15 minutos sin comprobante.
+El flujo de pago replica un patrón real y simple para negocios chicos con volumen bajo/medio: el cliente transfiere y sube el comprobante, y una persona lo confirma a mano mirando la app de Mercado Pago — sin IA ni reconciliación automática. Estados del pedido: `pendiente_pago → pendiente_confirmar → pagado_confirmado`, o `cancelado` si se vencen los 15 minutos sin comprobante.
 
 ## Fotos
 
-Los productos usan imágenes placeholder generadas en el momento (SVG, sin depender de internet ni de fotos de terceros) — así el catálogo no se ve vacío mientras no haya fotos reales. Hay dos formas de poner fotos reales:
+Los productos usan imágenes placeholder generadas en el momento (SVG, sin depender de internet ni de fotos de terceros). Hay dos formas de poner fotos reales:
 
-1. **Desde el panel admin** (`Productos → Editar`): subir una foto se guarda como parte del producto y se usa en vez del placeholder. Es la forma pensada para que Priscila la pruebe ella misma.
+1. **Desde el panel admin** (`Productos → Editar`): subir una foto se guarda como parte del producto y se usa en vez del placeholder.
 2. Poniendo una URL de imagen en el campo `img` de un producto en `assets/js/data.js` (son los datos "de fábrica" con los que arranca la demo).
 
 ## Cómo verlo
@@ -38,7 +38,7 @@ python -m http.server 8080
 
 y entrar a `http://localhost:8080`.
 
-Hay un botón "Reiniciar demo" en todas las pantallas para borrar carrito y pedidos guardados y arrancar de cero (no borra productos/categorías que se hayan editado — para eso está "↺ Restaurar catálogo original" dentro de `admin/productos.html`).
+Hay un botón "Reiniciar demo" en todas las pantallas para borrar carrito y pedidos guardados y arrancar de cero (no borra productos/categorías editados — para eso está "↺ Restaurar catálogo original" dentro de `admin/productos.html`).
 
 ## Estructura
 
@@ -54,6 +54,6 @@ assets/js/data.js        Catálogo "de fábrica" (seed) — productos y categor�
 assets/js/store.js       Estado real: carrito, pedidos y catálogo editable, en localStorage
 ```
 
-## Qué falta para producción
+## Qué le faltaría a una versión real
 
-Esto es solo la maqueta de las pantallas y el flujo. Para la versión real falta todo lo que está en la spec técnica: backend en Node/Express, base de datos PostgreSQL, subida de comprobante e imágenes de producto a almacenamiento real, envío de mail con Resend, y el panel de administración con autenticación de verdad.
+Esto es solo la maqueta de pantallas y flujo. Una implementación real necesitaría, como mínimo: backend (Node/Express o similar) con base de datos, subida de comprobante e imágenes de producto a almacenamiento real, envío de mail automático (ej. con Resend) y autenticación de verdad en el panel de administración.

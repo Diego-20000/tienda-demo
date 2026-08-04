@@ -49,7 +49,7 @@ function render() {
         <h1>¡Pedido confirmado!</h1>
         <p class="text-muted">Ya vimos tu pago. Retirás en la feria en el horario habitual.</p>
         ${orderBoxHtml(order)}
-        <div class="info-box" style="text-align:left;">📍 Costanera Club / Comité Radical — sábados 10 a 19h, domingos y feriados 10 a 18h.</div>
+        <div class="info-box" style="text-align:left;">📍 Plaza San Martín — Villa Origen — sábados 10 a 19h, domingos y feriados 10 a 18h.</div>
         <div class="flex gap-8" style="justify-content:center; margin-top:20px;">
           <button class="btn btn-secondary" id="view-email">✉️ Ver mail que le llegó al cliente</button>
           <a href="index.html" class="btn btn-ghost">Volver al catálogo</a>
@@ -87,8 +87,8 @@ function showEmailModal(order) {
           <p>Confirmamos tu pago del pedido <strong>${order.id}</strong>:</p>
           <ul>${order.items.map((i) => `<li>${i.qty} × ${i.name}</li>`).join('')}</ul>
           <p><strong>Total: ${formatARS(order.monto_total)}</strong></p>
-          <p>Retiro en feria — Costanera Club / Comité Radical.<br>Sábados 10 a 19h · domingos y feriados 10 a 18h.</p>
-          <p>¡Gracias por elegirnos!<br>Abriendo Caminos</p>
+          <p>Retiro en feria — Plaza San Martín — Villa Origen.<br>Sábados 10 a 19h · domingos y feriados 10 a 18h.</p>
+          <p>¡Gracias por elegirnos!<br>Dulce Cosecha</p>
         </div>
       </div>
     </div>

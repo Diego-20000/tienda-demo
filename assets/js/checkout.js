@@ -41,7 +41,7 @@ function renderStepDatos() {
       <form id="datos-form">
         <div class="field">
           <label for="nombre">Nombre y apellido</label>
-          <input type="text" id="nombre" required placeholder="Ej: Priscila Gómez">
+          <input type="text" id="nombre" required placeholder="Ej: Ana López">
         </div>
         <div class="field">
           <label for="email">Email</label>
@@ -54,7 +54,7 @@ function renderStepDatos() {
           <input type="radio" name="entrega" value="retiro_feria" checked>
           <div>
             <div class="title">Retiro en feria</div>
-            <div class="desc">Costanera Club / Comité Radical — Sáb 10-19h, dom y feriados 10-18h. Sin costo adicional.</div>
+            <div class="desc">Plaza San Martín — Villa Origen — Sáb 10-19h, dom y feriados 10-18h. Sin costo adicional.</div>
           </div>
         </label>
         <label class="delivery-option disabled">
