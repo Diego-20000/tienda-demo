@@ -12,8 +12,10 @@ function orderBoxHtml(order) {
       <div class="row"><span>Nº de pedido</span><span><strong>${order.id}</strong></span></div>
       <div class="row"><span>Estado</span><span class="badge badge-${order.estado}">${ESTADO_LABELS[order.estado]}</span></div>
       ${itemsRowsHtml(order)}
-      <div class="row"><span>Total</span><span><strong>${formatARS(order.monto_total)}</strong></span></div>
-      <div class="row"><span>Entrega</span><span>Retiro en feria</span></div>
+      ${order.metodo_pago === 'tarjeta' ? `<div class="row"><span>Recargo (${order.comision_pct}%)</span><span>${formatARS(order.comision_monto)}</span></div>` : ''}
+      <div class="row"><span>Total</span><span><strong>${formatARS(order.metodo_pago === 'tarjeta' ? order.monto_pagado : order.monto_total)}</strong></span></div>
+      <div class="row"><span>Pago</span><span>${metodoPagoLabel(order)}</span></div>
+      <div class="row"><span>Entrega</span><span>${tipoEntregaLabel(order.tipo_entrega)}</span></div>
     </div>
   `;
 }
@@ -47,9 +49,9 @@ function render() {
       <div class="status-screen">
         <div class="status-icon confirmed">✅</div>
         <h1>¡Pedido confirmado!</h1>
-        <p class="text-muted">Ya vimos tu pago. Retirás en la feria en el horario habitual.</p>
+        <p class="text-muted">${order.metodo_pago === 'tarjeta' ? 'Tu pago fue aprobado al instante.' : 'Ya vimos tu pago.'}</p>
         ${orderBoxHtml(order)}
-        <div class="info-box" style="text-align:left;">📍 Plaza San Martín — Villa Origen — sábados 10 a 19h, domingos y feriados 10 a 18h.</div>
+        <div class="info-box" style="text-align:left;">${entregaInfoHtml(order)}</div>
         <div class="flex gap-8" style="justify-content:center; margin-top:20px;">
           <button class="btn btn-secondary" id="view-email">✉️ Ver mail que le llegó al cliente</button>
           <a href="index.html" class="btn btn-ghost">Volver al catálogo</a>
@@ -79,16 +81,16 @@ function showEmailModal(order) {
     <div class="modal-box">
       <button class="modal-close" data-close>✕</button>
       <h3 class="mt-0">Vista previa del mail automático</h3>
-      <p class="hint" style="margin-top:-8px;">Se dispara solo al tocar "Confirmar" en el panel. En producción se envía con Resend.</p>
+      <p class="hint" style="margin-top:-8px;">Se dispara solo al confirmarse el pago. En producción se envía con un proveedor real de mail transaccional.</p>
       <div class="email-preview">
         <div class="email-head">Para: ${order.cliente_email}<br>Asunto: Tu pedido ${order.id} está confirmado ✅</div>
         <div class="email-body">
           <p>¡Hola ${order.cliente_nombre.split(' ')[0]}!</p>
-          <p>Confirmamos tu pago del pedido <strong>${order.id}</strong>:</p>
+          <p>Confirmamos tu pedido <strong>${order.id}</strong>:</p>
           <ul>${order.items.map((i) => `<li>${i.qty} × ${i.name}</li>`).join('')}</ul>
-          <p><strong>Total: ${formatARS(order.monto_total)}</strong></p>
-          <p>Retiro en feria — Plaza San Martín — Villa Origen.<br>Sábados 10 a 19h · domingos y feriados 10 a 18h.</p>
-          <p>¡Gracias por elegirnos!<br>Dulce Cosecha</p>
+          <p><strong>Total: ${formatARS(order.metodo_pago === 'tarjeta' ? order.monto_pagado : order.monto_total)}</strong></p>
+          <p>${entregaInfoHtml(order)}</p>
+          <p>¡Gracias por tu compra!<br>Bazario</p>
         </div>
       </div>
     </div>

@@ -30,16 +30,16 @@ function showEmailPreviewModal(order) {
     <div class="modal-box">
       <button class="modal-close" data-close>✕</button>
       <h3 class="mt-0">✉️ Mail enviado automáticamente</h3>
-      <p class="hint" style="margin-top:-8px;">Simulación — en producción esto lo dispara Resend al tocar "Confirmar".</p>
+      <p class="hint" style="margin-top:-8px;">Simulación — en producción esto lo dispara un mail transaccional real al confirmarse el pago.</p>
       <div class="email-preview">
         <div class="email-head">Para: ${order.cliente_email}<br>Asunto: Tu pedido ${order.id} está confirmado ✅</div>
         <div class="email-body">
           <p>¡Hola ${order.cliente_nombre.split(' ')[0]}!</p>
-          <p>Confirmamos tu pago del pedido <strong>${order.id}</strong>:</p>
+          <p>Confirmamos tu pedido <strong>${order.id}</strong>:</p>
           <ul>${order.items.map((i) => `<li>${i.qty} × ${i.name}</li>`).join('')}</ul>
-          <p><strong>Total: ${formatARS(order.monto_total)}</strong></p>
-          <p>Retiro en feria — Plaza San Martín — Villa Origen.<br>Sábados 10 a 19h · domingos y feriados 10 a 18h.</p>
-          <p>¡Gracias por elegirnos!<br>Dulce Cosecha</p>
+          <p><strong>Total: ${formatARS(order.metodo_pago === 'tarjeta' ? order.monto_pagado : order.monto_total)}</strong></p>
+          <p>${entregaInfoHtml(order)}</p>
+          <p>¡Gracias por tu compra!<br>Bazario</p>
         </div>
       </div>
     </div>

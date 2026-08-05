@@ -24,6 +24,8 @@ function renderHistory() {
           <th>Cliente</th>
           <th>Productos</th>
           <th>Monto</th>
+          <th>Pago</th>
+          <th>Entrega</th>
           <th>Estado</th>
           <th>Creado</th>
           <th>Comprobante</th>
@@ -36,8 +38,10 @@ function renderHistory() {
           <tr>
             <td><strong>${o.id}</strong></td>
             <td>${o.cliente_nombre}<br><span class="text-muted" style="font-size:12px;">${o.cliente_email}</span></td>
-            <td style="max-width:260px;">${o.items.map((i) => `${i.qty}× ${i.name}`).join(', ')}</td>
-            <td>${formatARS(o.monto_total)}</td>
+            <td style="max-width:220px;">${o.items.map((i) => `${i.qty}× ${i.name}`).join(', ')}</td>
+            <td>${formatARS(o.metodo_pago === 'tarjeta' ? o.monto_pagado : o.monto_total)}</td>
+            <td style="font-size:13px;">${metodoPagoLabel(o)}</td>
+            <td style="font-size:13px;">${tipoEntregaLabel(o.tipo_entrega)}</td>
             <td><span class="badge badge-${o.estado}">${ESTADO_LABELS[o.estado]}</span></td>
             <td>${formatDateTime(o.creado_en)}</td>
             <td>${o.comprobante ? `<button class="btn btn-secondary btn-sm" data-view-receipt="${o.id}">Ver</button>` : '<span class="text-muted">—</span>'}</td>

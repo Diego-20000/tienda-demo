@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  document.title = product.name + ' — Dulce Cosecha';
+  document.title = product.name + ' — Bazario';
 
   wrap.innerHTML = `
     <div class="gallery"><img src="${productImage(product)}" alt="${product.name}"></div>
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <button class="btn btn-primary btn-block" id="add-to-cart-btn">Agregar al carrito — ${formatARS(product.price)}</button>
       <div class="info-box">
-        📍 Retiro en feria: sábados 10-19h, domingos y feriados 10-18h. Pagás por transferencia y confirmamos tu pedido a mano en cuanto vemos el comprobante.
+        🚚 Envío a domicilio o retiro en sucursal. Pagás con tarjeta (aprobación al instante) o por transferencia.
       </div>
     </div>
   `;

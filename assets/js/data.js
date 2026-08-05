@@ -1,6 +1,7 @@
 /* ============================================================
-   Catálogo de muestra — Dulce Cosecha
-   Rubro: conservas, dulces y licores artesanales.
+   Catálogo de muestra — Bazario
+   Tienda general ("un poco de todo"), sin logística de feria:
+   envío a domicilio o retiro en sucursal.
    Estos son los datos "de fábrica": la primera vez que se abre
    la demo se copian a localStorage (ver initCatalog en store.js)
    y desde ahí el panel admin puede agregar, editar o borrar
@@ -8,48 +9,58 @@
    ============================================================ */
 
 const SEED_CATEGORIES = [
-  { slug: 'conservas', label: 'Conservas' },
-  { slug: 'dulces', label: 'Dulces' },
-  { slug: 'licores', label: 'Licores' },
-  { slug: 'combos', label: 'Combos / Regalos' },
+  { slug: 'tecnologia', label: 'Tecnología' },
+  { slug: 'hogar', label: 'Hogar' },
+  { slug: 'indumentaria', label: 'Indumentaria' },
+  { slug: 'belleza', label: 'Belleza' },
+  { slug: 'deportes', label: 'Deportes' },
+  { slug: 'ofertas', label: 'Ofertas' },
 ];
 
 const SEED_PRODUCTS = [
-  // ---- Conservas ----
-  { id: 'p01', name: 'Mermelada de Higo', category: 'conservas', price: 4200, desc: 'Higos de estación cocidos a fuego lento con azúcar y un toque de limón. Frasco de 350g.' },
-  { id: 'p02', name: 'Mermelada de Frutilla', category: 'conservas', price: 4000, desc: 'Receta casera, fruta entera, sin conservantes. Frasco de 350g.' },
-  { id: 'p03', name: 'Dulce de Membrillo', category: 'conservas', price: 4500, desc: 'Dulce de membrillo tradicional en frasco, ideal con quesos. 400g.' },
-  { id: 'p04', name: 'Dulce de Batata', category: 'conservas', price: 4300, desc: 'Dulce de batata artesanal, textura suave. 400g.' },
-  { id: 'p05', name: 'Escabeche de Berenjenas', category: 'conservas', price: 5200, desc: 'Berenjenas en escabeche casero, receta de feria. Frasco de 400g.' },
-  { id: 'p06', name: 'Pickles Mixtos', category: 'conservas', price: 4800, desc: 'Verduras encurtidas de estación, mezcla de la huerta. Frasco de 350g.' },
-  { id: 'p07', name: 'Cebollas Encurtidas', category: 'conservas', price: 3900, desc: 'Cebolla morada encurtida, ideal para picadas y sándwiches. 300g.' },
-  { id: 'p08', name: 'Chimichurri Artesanal', category: 'conservas', price: 3600, desc: 'Salsa chimichurri casera, hierbas frescas. Frasco de 250g.' },
+  // ---- Tecnología ----
+  { id: 'p01', name: 'Auriculares Bluetooth Inalámbricos', category: 'tecnologia', price: 24500, desc: 'Auriculares in-ear con cancelación de ruido pasiva y estuche de carga. Autonomía de hasta 20 horas.' },
+  { id: 'p02', name: 'Parlante Portátil Bluetooth', category: 'tecnologia', price: 32000, desc: 'Parlante resistente a salpicaduras, sonido envolvente, 12 horas de batería.' },
+  { id: 'p03', name: 'Cargador Rápido USB-C 30W', category: 'tecnologia', price: 8900, desc: 'Cargador de pared compacto con carga rápida para celulares y tablets.' },
+  { id: 'p04', name: 'Smartwatch Deportivo', category: 'tecnologia', price: 45000, desc: 'Monitoreo de actividad, frecuencia cardíaca y notificaciones. Resistente al agua.' },
+  { id: 'p05', name: 'Power Bank 10000mAh', category: 'tecnologia', price: 15500, desc: 'Batería portátil con dos puertos USB, carga dos dispositivos a la vez.' },
+  { id: 'p06', name: 'Mouse Inalámbrico', category: 'tecnologia', price: 9800, desc: 'Mouse ergonómico silencioso, conexión USB o Bluetooth.' },
 
-  // ---- Dulces ----
-  { id: 'p09', name: 'Alfajores de Maicena (x6)', category: 'dulces', price: 5400, desc: 'Alfajores de maicena rellenos de dulce de leche, bañados en coco. Docena chica x6.' },
-  { id: 'p10', name: 'Alfajores de Chocolate (x6)', category: 'dulces', price: 5800, desc: 'Tapas de cacao, relleno de dulce de leche, baño de chocolate. x6 unidades.' },
-  { id: 'p11', name: 'Bombones Artesanales (caja x9)', category: 'dulces', price: 7200, desc: 'Surtido de bombones de chocolate rellenos, caja de regalo x9.' },
-  { id: 'p12', name: 'Turrón de Maní', category: 'dulces', price: 3200, desc: 'Turrón casero de maní, receta de feria. 200g.' },
-  { id: 'p13', name: 'Budín de Limón', category: 'dulces', price: 5600, desc: 'Budín húmedo de limón con glaseado. Molde individual de 500g.' },
-  { id: 'p14', name: 'Cookies Artesanales (x8)', category: 'dulces', price: 4600, desc: 'Cookies caseras de chips de chocolate, bolsa x8 unidades.' },
-  { id: 'p15', name: 'Alfajores de Chocolate y Coco (x6)', category: 'dulces', price: 6000, desc: 'Variante especial bañada en chocolate con coco rallado. x6 unidades.' },
+  // ---- Hogar ----
+  { id: 'p07', name: 'Set de Sábanas Queen', category: 'hogar', price: 22000, desc: 'Juego de sábanas 100% algodón, incluye funda de almohada. Varios colores.' },
+  { id: 'p08', name: 'Juego de Toallas x3', category: 'hogar', price: 14500, desc: 'Toallas de algodón peinado, alta absorción. Set de 3 tamaños.' },
+  { id: 'p09', name: 'Lámpara de Escritorio LED', category: 'hogar', price: 12800, desc: 'Luz regulable en 3 tonos, brazo flexible, entrada USB.' },
+  { id: 'p10', name: 'Organizador Multiuso', category: 'hogar', price: 7500, desc: 'Organizador apilable de plástico resistente, ideal para placares o cocina.' },
+  { id: 'p11', name: 'Set de Ollas Antiadherentes x5', category: 'hogar', price: 38000, desc: 'Juego de 5 ollas y sartenes con revestimiento antiadherente, aptas para todo tipo de cocinas.' },
+  { id: 'p12', name: 'Difusor de Aromas', category: 'hogar', price: 11200, desc: 'Difusor ultrasónico con luz LED, ideal para ambientar cualquier ambiente.' },
 
-  // ---- Licores ----
-  { id: 'p16', name: 'Licor de Café', category: 'licores', price: 11500, desc: 'Licor artesanal de café de grano, elaboración casera. Botella de 500ml.' },
-  { id: 'p17', name: 'Limoncello Casero', category: 'licores', price: 12000, desc: 'Limoncello con cáscara de limón de estación, receta italiana tradicional. 500ml.' },
-  { id: 'p18', name: 'Licor de Naranja', category: 'licores', price: 11800, desc: 'Licor de naranja con un toque de canela. Botella de 500ml.' },
-  { id: 'p19', name: 'Amargo Serrano', category: 'licores', price: 13500, desc: 'Amargo artesanal a base de hierbas serranas, receta de familia. 500ml.' },
-  { id: 'p20', name: 'Licor de Menta', category: 'licores', price: 11500, desc: 'Licor de menta fresca, ideal como digestivo. Botella de 500ml.' },
-  { id: 'p21', name: 'Aperitivo de Membrillo', category: 'licores', price: 12500, desc: 'Aperitivo dulce a base de membrillo casero. Botella de 500ml.' },
+  // ---- Indumentaria ----
+  { id: 'p13', name: 'Remera Básica Algodón', category: 'indumentaria', price: 9500, desc: 'Remera unisex 100% algodón, corte clásico. Varios colores y talles.' },
+  { id: 'p14', name: 'Buzo Canguro Unisex', category: 'indumentaria', price: 18900, desc: 'Buzo de frisa con capucha y bolsillo canguro, ideal para entretiempo.' },
+  { id: 'p15', name: 'Zapatillas Urbanas', category: 'indumentaria', price: 34500, desc: 'Zapatillas livianas para uso diario, suela de goma antideslizante.' },
+  { id: 'p16', name: 'Campera Rompeviento', category: 'indumentaria', price: 27800, desc: 'Campera liviana e impermeable, plegable, ideal para viajar.' },
+  { id: 'p17', name: 'Gorra Ajustable', category: 'indumentaria', price: 6900, desc: 'Gorra de algodón con cierre ajustable, visera curva.' },
 
-  // ---- Combos / Regalos ----
-  { id: 'p22', name: 'Combo Desayuno (mermelada + budín)', category: 'combos', price: 9500, desc: 'Un frasco de mermelada a elección + budín individual, en bolsa de regalo.' },
-  { id: 'p23', name: 'Set Conservas x3', category: 'combos', price: 12200, desc: 'Tres frascos de conservas a elección, presentados juntos para regalar.' },
-  { id: 'p24', name: 'Caja Regalo Dulce y Licor', category: 'combos', price: 18500, desc: 'Una botella de licor a elección + alfajores, en caja de regalo con tarjeta.' },
-  { id: 'p25', name: 'Picada Dulce Surtida', category: 'combos', price: 14800, desc: 'Selección de dulces y conservas para compartir, ideal para llevar a una reunión.' },
-  { id: 'p26', name: 'Combo Feria (conserva + dulce + licor)', category: 'combos', price: 19900, desc: 'Lo mejor de cada categoría en un solo combo: una conserva, un dulce y un licor a elección.' },
+  // ---- Belleza ----
+  { id: 'p18', name: 'Perfume Unisex 100ml', category: 'belleza', price: 19900, desc: 'Fragancia fresca de larga duración, formato de viaje disponible.' },
+  { id: 'p19', name: 'Set de Skincare Facial', category: 'belleza', price: 16500, desc: 'Rutina completa: limpiador, tónico e hidratante para todo tipo de piel.' },
+  { id: 'p20', name: 'Secador de Pelo Profesional', category: 'belleza', price: 21000, desc: 'Motor de alta potencia, 3 temperaturas y 2 velocidades, difusor incluido.' },
+  { id: 'p21', name: 'Kit de Maquillaje Básico', category: 'belleza', price: 13800, desc: 'Set inicial con base, rubor, labial y pinceles esenciales.' },
+
+  // ---- Deportes ----
+  { id: 'p22', name: 'Pelota de Fútbol N°5', category: 'deportes', price: 12500, desc: 'Pelota oficial N°5, cámara de butilo, apta para césped y cemento.' },
+  { id: 'p23', name: 'Mancuernas Ajustables (par)', category: 'deportes', price: 28000, desc: 'Par de mancuernas con discos intercambiables, de 2 a 10kg cada una.' },
+  { id: 'p24', name: 'Mat de Yoga Antideslizante', category: 'deportes', price: 9900, desc: 'Colchoneta de 6mm, superficie antideslizante, incluye correa de transporte.' },
+  { id: 'p25', name: 'Botella Térmica Deportiva', category: 'deportes', price: 8500, desc: 'Mantiene la temperatura hasta 12 horas, acero inoxidable, 750ml.' },
+  { id: 'p26', name: 'Mochila Deportiva', category: 'deportes', price: 16900, desc: 'Mochila resistente al agua con compartimento para calzado, 30 litros.' },
+
+  // ---- Ofertas ----
+  { id: 'p27', name: 'Combo Home Office (mouse + lámpara)', category: 'ofertas', price: 19900, desc: 'Mouse inalámbrico + lámpara de escritorio LED, para armar tu rincón de trabajo.' },
+  { id: 'p28', name: 'Pack Fitness (mat + botella)', category: 'ofertas', price: 16800, desc: 'Mat de yoga + botella térmica deportiva, todo lo que necesitás para entrenar.' },
+  { id: 'p29', name: 'Combo Belleza (perfume + skincare)', category: 'ofertas', price: 32000, desc: 'Perfume unisex 100ml + set de skincare facial, en un solo pack.' },
+  { id: 'p30', name: 'Set Tech Starter (auriculares + power bank)', category: 'ofertas', price: 36500, desc: 'Auriculares Bluetooth + power bank 10000mAh, el combo para andar siempre conectado.' },
 ];
 
 function formatARS(n) {
-  return '$' + n.toLocaleString('es-AR');
+  return '$' + Math.round(n).toLocaleString('es-AR');
 }

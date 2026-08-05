@@ -20,29 +20,30 @@ function paletteFor(seed) {
 
 // Siluetas simples por categoría, dibujadas a mano con formas básicas
 const CATEGORY_ICONS = {
-  conservas: (c) => `
-    <rect x="150" y="148" width="100" height="28" rx="6" fill="${c}"/>
-    <rect x="138" y="172" width="124" height="112" rx="16" fill="${c}" opacity=".9"/>
-    <rect x="152" y="196" width="96" height="52" rx="8" fill="#fff" opacity=".3"/>
+  tecnologia: (c) => `
+    <rect x="160" y="140" width="80" height="140" rx="14" fill="${c}" opacity=".9"/>
+    <rect x="172" y="156" width="56" height="96" rx="4" fill="#fff" opacity=".28"/>
+    <circle cx="200" cy="266" r="6" fill="#fff" opacity=".5"/>
   `,
-  dulces: (c) => `
-    <circle cx="163" cy="222" r="42" fill="${c}" opacity=".9"/>
-    <circle cx="237" cy="222" r="42" fill="${c}" opacity=".65"/>
-    <circle cx="158" cy="210" r="4" fill="#fff" opacity=".55"/>
-    <circle cx="174" cy="230" r="4" fill="#fff" opacity=".55"/>
-    <circle cx="148" cy="230" r="4" fill="#fff" opacity=".55"/>
-    <circle cx="230" cy="212" r="4" fill="#fff" opacity=".45"/>
-    <circle cx="246" cy="230" r="4" fill="#fff" opacity=".45"/>
+  hogar: (c) => `
+    <path d="M200 130 L272 190 V272 H128 V190 Z" fill="${c}" opacity=".9"/>
+    <rect x="180" y="222" width="40" height="50" fill="#fff" opacity=".22"/>
   `,
-  licores: (c) => `
-    <rect x="186" y="138" width="28" height="34" rx="6" fill="${c}"/>
-    <path d="M172 172 h56 l10 28 v78 a10 10 0 0 1 -10 10 h-56 a10 10 0 0 1 -10 -10 v-78 z" fill="${c}" opacity=".9"/>
-    <rect x="172" y="222" width="56" height="26" fill="#fff" opacity=".22"/>
+  indumentaria: (c) => `
+    <path d="M160 150 L185 133 L200 148 L215 133 L240 150 L228 180 L215 170 V272 H185 V170 L172 180 Z" fill="${c}" opacity=".9"/>
   `,
-  combos: (c) => `
-    <rect x="130" y="190" width="140" height="100" rx="10" fill="${c}" opacity=".9"/>
-    <rect x="130" y="190" width="140" height="26" fill="#fff" opacity=".35"/>
-    <rect x="190" y="190" width="20" height="100" fill="#fff" opacity=".35"/>
+  belleza: (c) => `
+    <rect x="188" y="138" width="24" height="24" rx="5" fill="${c}"/>
+    <path d="M178 168 h44 l6 20 v72 a9 9 0 0 1 -9 9 h-38 a9 9 0 0 1 -9 -9 v-72 z" fill="${c}" opacity=".9"/>
+    <rect x="178" y="222" width="44" height="20" fill="#fff" opacity=".2"/>
+  `,
+  deportes: (c) => `
+    <circle cx="200" cy="220" r="62" fill="${c}" opacity=".9"/>
+    <path d="M148 220 h104 M200 168 v104" stroke="#fff" stroke-opacity=".35" stroke-width="6"/>
+  `,
+  ofertas: (c) => `
+    <path d="M150 150 L232 150 L272 190 L192 272 L150 230 Z" fill="${c}" opacity=".9"/>
+    <circle cx="180" cy="180" r="10" fill="#fff" opacity=".55"/>
   `,
   default: (c) => `
     <circle cx="200" cy="220" r="70" fill="${c}" opacity=".85"/>

@@ -1,9 +1,15 @@
 /* ============================================================
    Store — capa de datos 100% cliente (localStorage).
-   No hay backend: esto simula lo que en producción sería
-   Node + Express + PostgreSQL (ver spec técnica del proyecto).
-   Estados de pedido: pendiente_pago -> pendiente_confirmar ->
-   pagado_confirmado  (o -> cancelado si vencen los 15 min)
+   No hay backend real: esto simula lo que en producción sería
+   un servidor con base de datos.
+
+   Dos formas de pagar:
+   - Tarjeta: pasarela simulada, aprobación al instante → el
+     pedido nace ya en `pagado_confirmado`.
+   - Transferencia: el cliente sube un comprobante y alguien lo
+     confirma a mano desde el panel admin. Estados:
+     pendiente_pago -> pendiente_confirmar -> pagado_confirmado
+     (o -> cancelado si vencen los 15 min de reserva de stock)
    ============================================================ */
 
 const LS_CART = 'ac_cart';
@@ -15,8 +21,25 @@ const LS_CATEGORIES = 'ac_categories';
 const LS_PRODUCT_SEQ = 'ac_product_seq';
 const RESERVA_MIN = 15;
 
-const ALIAS_MP = 'dulcecosecha.mp';
+const ALIAS_MP = 'bazario.mp';
 const WHATSAPP = '11 5555-5555';
+const SUCURSAL_DIRECCION = 'Av. Siempre Viva 1234, CABA';
+const SUCURSAL_HORARIO = 'Lunes a viernes 9 a 18h · Sábados 9 a 13h';
+
+// Pasarela de pagos simulada: cada tarjeta tiene su propio recargo,
+// igual que en una pasarela real (débito sin recargo, crédito con
+// recargo, marcas premium con recargo más alto).
+const CARD_BRANDS = [
+  { id: 'visa_debito', label: 'Visa Débito', group: 'Débito', fee: 0 },
+  { id: 'master_debito', label: 'Mastercard Débito', group: 'Débito', fee: 0 },
+  { id: 'visa_credito', label: 'Visa Crédito', group: 'Crédito', fee: 2.5 },
+  { id: 'master_credito', label: 'Mastercard Crédito', group: 'Crédito', fee: 2.5 },
+  { id: 'cabal_credito', label: 'Cabal Crédito', group: 'Crédito', fee: 3 },
+  { id: 'amex', label: 'American Express', group: 'Crédito', fee: 4.5 },
+];
+function getCardBrand(id) {
+  return CARD_BRANDS.find((b) => b.id === id);
+}
 
 // ---------- helpers genéricos ----------
 function readLS(key, fallback) {
@@ -112,8 +135,15 @@ function resetCatalog() {
 }
 
 // ---------- carrito ----------
+// getCart() poda referencias a productos que ya no existen (borrados desde
+// el admin, o un catálogo restaurado) — así el contador del header y el
+// carrito real nunca quedan desincronizados.
 function getCart() {
-  return readLS(LS_CART, []);
+  const cart = readLS(LS_CART, []);
+  const validIds = new Set(getProducts().map((p) => p.id));
+  const pruned = cart.filter((i) => validIds.has(i.productId));
+  if (pruned.length !== cart.length) writeLS(LS_CART, pruned);
+  return pruned;
 }
 function saveCart(cart) {
   writeLS(LS_CART, cart);
@@ -180,12 +210,10 @@ function saveOrders(orders) {
 function getOrder(id) {
   return getOrders().find((o) => o.id === id);
 }
-function createOrder({ clienteNombre, clienteEmail, tipoEntrega }) {
+function buildBaseOrder({ clienteNombre, clienteEmail, tipoEntrega, direccion }) {
   const lines = cartLines();
   if (!lines.length) return null;
-  const now = new Date();
-  const vence = new Date(now.getTime() + RESERVA_MIN * 60000);
-  const order = {
+  return {
     id: nextOrderId(),
     cliente_nombre: clienteNombre,
     cliente_email: clienteEmail,
@@ -197,12 +225,58 @@ function createOrder({ clienteNombre, clienteEmail, tipoEntrega }) {
     })),
     monto_total: cartTotal(),
     tipo_entrega: tipoEntrega,
+    direccion: direccion || null,
+  };
+}
+
+// Pago por transferencia: el pedido queda pendiente_pago con 15 min
+// de reserva de stock, hasta que suban el comprobante.
+function createOrder({ clienteNombre, clienteEmail, tipoEntrega, direccion }) {
+  const base = buildBaseOrder({ clienteNombre, clienteEmail, tipoEntrega, direccion });
+  if (!base) return null;
+  const now = new Date();
+  const vence = new Date(now.getTime() + RESERVA_MIN * 60000);
+  const order = {
+    ...base,
+    metodo_pago: 'transferencia',
     estado: 'pendiente_pago',
     creado_en: now.toISOString(),
     vence_en: vence.toISOString(),
     comprobante: null,
     comprobante_subido_en: null,
     confirmado_en: null,
+  };
+  const orders = readLS(LS_ORDERS, []);
+  orders.unshift(order);
+  saveOrders(orders);
+  clearCart();
+  return order;
+}
+
+// Pago con tarjeta: la pasarela simulada aprueba al instante, así
+// que el pedido nace directo en pagado_confirmado — no hay reserva
+// de stock ni comprobante que esperar.
+function createPaidOrder({ clienteNombre, clienteEmail, tipoEntrega, direccion, cardBrandId, cardLast4 }) {
+  const base = buildBaseOrder({ clienteNombre, clienteEmail, tipoEntrega, direccion });
+  if (!base) return null;
+  const brand = getCardBrand(cardBrandId);
+  const comisionPct = brand ? brand.fee : 0;
+  const comisionMonto = Math.round(base.monto_total * (comisionPct / 100));
+  const now = new Date();
+  const order = {
+    ...base,
+    metodo_pago: 'tarjeta',
+    tarjeta_marca: brand ? brand.label : 'Tarjeta',
+    tarjeta_last4: cardLast4,
+    comision_pct: comisionPct,
+    comision_monto: comisionMonto,
+    monto_pagado: base.monto_total + comisionMonto,
+    estado: 'pagado_confirmado',
+    creado_en: now.toISOString(),
+    vence_en: null,
+    comprobante: null,
+    comprobante_subido_en: null,
+    confirmado_en: now.toISOString(),
   };
   const orders = readLS(LS_ORDERS, []);
   orders.unshift(order);
@@ -248,6 +322,20 @@ const ESTADO_LABELS = {
   pagado_confirmado: 'Pago confirmado',
   cancelado: 'Cancelado',
 };
+
+function tipoEntregaLabel(tipo) {
+  return tipo === 'retiro_sucursal' ? 'Retiro en sucursal' : 'Envío a domicilio';
+}
+function metodoPagoLabel(order) {
+  if (order.metodo_pago === 'tarjeta') return `Tarjeta — ${order.tarjeta_marca} •••• ${order.tarjeta_last4}`;
+  return 'Transferencia bancaria';
+}
+function entregaInfoHtml(order) {
+  if (order.tipo_entrega === 'retiro_sucursal') {
+    return `📍 Retiro en sucursal — ${SUCURSAL_DIRECCION}.<br>${SUCURSAL_HORARIO}.`;
+  }
+  return `🚚 Envío a domicilio${order.direccion ? ' a ' + order.direccion : ''}. Te avisamos por mail cuando salga.`;
+}
 
 // ---------- admin (mock, sin seguridad real — es una demo) ----------
 function isAdminLoggedIn() {
