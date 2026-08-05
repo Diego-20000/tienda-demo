@@ -14,8 +14,8 @@ function renderCategoryChips() {
       <span class="category-chip">
         <span>${c.label}</span>
         <span class="count">(${count})</span>
-        <button type="button" data-rename-cat="${c.slug}" title="Renombrar">✏️</button>
-        <button type="button" data-delete-cat="${c.slug}" title="${count > 0 ? 'No se puede borrar: tiene productos' : 'Borrar categoría'}">🗑️</button>
+        <button type="button" data-rename-cat="${c.slug}" title="Renombrar">${ICONS.pencil(13)}</button>
+        <button type="button" data-delete-cat="${c.slug}" title="${count > 0 ? 'No se puede borrar: tiene productos' : 'Borrar categoría'}">${ICONS.trash(13)}</button>
       </span>`;
     })
     .join('');
@@ -76,7 +76,7 @@ function renderProductList() {
   });
 
   if (!products.length) {
-    wrap.innerHTML = `<div class="empty-state"><div class="icon">🍯</div><h3>No hay productos acá</h3><p>Probá con otro filtro o agregá uno nuevo.</p></div>`;
+    wrap.innerHTML = `<div class="empty-state"><div class="icon">${ICONS.package(40)}</div><h3>No hay productos acá</h3><p>Probá con otro filtro o agregá uno nuevo.</p></div>`;
     return;
   }
 
@@ -143,7 +143,7 @@ function openProductModal(product) {
         <div class="field">
           <label>Foto (opcional)</label>
           <div class="upload-box" id="pf-upload-box">
-            ${product && product.img ? `<div class="upload-preview"><img src="${product.img}" alt=""></div><div class="hint" style="margin-top:8px;">Hacé clic para cambiar la imagen</div>` : '📎 Hacé clic para subir una foto (si no subís nada, se usa una imagen genérica)'}
+            ${product && product.img ? `<div class="upload-preview"><img src="${product.img}" alt=""></div><div class="hint" style="margin-top:8px;">Hacé clic para cambiar la imagen</div>` : `${ICONS.paperclip(15)} Hacé clic para subir una foto (si no subís nada, se usa una imagen genérica)`}
             <input type="file" id="pf-file" accept="image/*" style="display:none;">
           </div>
         </div>

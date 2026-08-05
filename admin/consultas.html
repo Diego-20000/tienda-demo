@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Productos — Panel Bazario</title>
+<title>Consultas — Panel Bazario</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/style.css">
@@ -11,7 +11,7 @@
 <body>
 
 <div class="demo-banner">
-  <span class="icon-slot" data-icon="settings" data-size="14"></span> <strong>Demo de prototipo</strong> — lo que cargues acá se guarda solo en este navegador.
+  <span class="icon-slot" data-icon="settings" data-size="14"></span> <strong>Demo de prototipo</strong> — estas consultas no se envían a ningún lado real, quedan guardadas acá.
   <button data-reset-demo>Reiniciar demo</button>
 </div>
 
@@ -31,34 +31,11 @@
   <main class="admin-main">
     <div class="admin-topbar">
       <div>
-        <h1 style="margin-bottom:2px;">Productos</h1>
-        <p class="text-muted" style="margin:0;">Agregá, editá o borrá productos y categorías. Se refleja al toque en la tienda.</p>
-      </div>
-      <button class="btn btn-primary" id="add-product-btn">+ Agregar producto</button>
-    </div>
-
-    <div class="card" style="padding:18px 20px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
-        <h3 style="margin:0; font-size:15px;">Categorías</h3>
-        <button class="btn btn-ghost btn-sm" id="restore-catalog-btn"><span class="icon-slot" data-icon="refresh" data-size="14"></span> Restaurar catálogo original</button>
-      </div>
-      <div id="category-chips"></div>
-      <form id="add-category-form" class="add-category-form" style="margin-top:6px;">
-        <input type="text" id="new-category-input" placeholder="Nueva categoría (ej: Escabeches)">
-        <button type="submit" class="btn btn-secondary btn-sm">+ Agregar</button>
-      </form>
-    </div>
-
-    <div class="toolbar" style="margin-top:24px;">
-      <div class="search-box">
-        <span class="icon-slot" data-icon="search" data-size="16"></span> <input type="text" id="search-input" placeholder="Buscar productos...">
-      </div>
-      <div class="category-filters" id="category-filters">
-        <button class="active" data-cat="all">Todos</button>
+        <h1 style="margin-bottom:2px;">Consultas</h1>
+        <p class="text-muted" style="margin:0;">Mensajes que dejaron desde el botón de contacto rápido de la tienda.</p>
       </div>
     </div>
-
-    <div id="products-list"></div>
+    <div id="consultas-list"></div>
   </main>
 </div>
 
@@ -67,6 +44,6 @@
 <script src="../assets/js/data.js"></script>
 <script src="../assets/js/store.js"></script>
 <script src="../assets/js/admin.js"></script>
-<script src="../assets/js/admin-productos.js"></script>
+<script src="../assets/js/admin-consultas.js"></script>
 </body>
 </html>

@@ -7,7 +7,7 @@ function renderHistory() {
   if (!orders.length) {
     wrap.innerHTML = `
       <div class="empty-state">
-        <div class="icon">📋</div>
+        <div class="icon">${ICONS.list(40)}</div>
         <h3>Todavía no hay pedidos</h3>
         <p>Armá uno desde la tienda para verlo reflejado acá.</p>
         <a href="../index.html" class="btn btn-secondary" style="margin-top:10px;">Ir a la tienda</a>

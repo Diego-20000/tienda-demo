@@ -14,11 +14,14 @@ Marca, productos, contacto y ubicación son **ficticios**, armados para que la d
 - **Pago con tarjeta**: pasarela simulada con 6 tarjetas distintas (débito sin recargo, crédito con recargo de 2.5% a 4.5% según la marca — igual que una pasarela real), formulario de tarjeta con validación (número con algoritmo de Luhn, vencimiento, CVV) y aprobación al instante.
 - **Pago por transferencia**: alias + monto exacto + cuenta regresiva de reserva de stock (15 min) + subida de comprobante, para confirmar a mano desde el panel admin.
 - Pantalla de estado del pedido, con vista previa del mail automático.
+- **Contacto rápido**: botón flotante con WhatsApp, teléfono y email (links reales — `wa.me` / `tel:` / `mailto:`), más un formulario corto para dejar una consulta si no se quiere escribir por WhatsApp. La consulta queda visible en el panel admin.
 - Responsive, pensado para verse bien también desde el celular.
+- Toda la iconografía es SVG propio (`assets/js/icons.js`), sin emojis ni librerías externas.
 
 **Panel de administración** (`/admin`, login simulado — cualquier usuario/contraseña entra):
 - **Pedidos por confirmar**: pedidos pagados por transferencia con comprobante subido, botón para confirmar el pago a mano.
 - **Productos**: agregar, editar y borrar productos (con foto propia opcional), y gestionar categorías (crear, renombrar, borrar). Los cambios se ven al toque en la tienda.
+- **Consultas**: mensajes dejados desde el botón de contacto rápido, con badge de "nuevas" en el menú y botón para marcarlas como respondidas.
 - **Historial**: todos los pedidos con método de pago, tipo de entrega, estado y comprobante (si aplica).
 
 Estados del pedido: pago con tarjeta → nace directo en `pagado_confirmado` (aprobación instantánea). Pago por transferencia → `pendiente_pago → pendiente_confirmar → pagado_confirmado`, o `cancelado` si se vencen los 15 minutos sin comprobante.
@@ -52,11 +55,13 @@ producto.html            Detalle de producto
 carrito.html             Carrito
 checkout.html            Datos y entrega → método de pago → confirmación
 pedido-confirmado.html   Estado del pedido
-admin/                   Panel de administración (pedidos, productos, historial)
+admin/                   Panel de administración (pedidos, productos, consultas, historial)
 assets/css/style.css     Sistema de diseño (paleta en variables CSS)
 assets/js/data.js        Catálogo "de fábrica" (seed) — productos y categorías
-assets/js/store.js       Estado real: carrito, pedidos, pasarela de pagos y catálogo editable, en localStorage
+assets/js/store.js       Estado real: carrito, pedidos, pasarela de pagos, consultas y catálogo editable, en localStorage
 assets/js/checkout.js    Flujo de checkout completo (entrega, tarjeta, transferencia)
+assets/js/icons.js       Librería de íconos SVG inline (reemplaza cualquier emoji del sitio)
+assets/js/contact-widget.js   Botón flotante de contacto rápido
 ```
 
 ## Qué le faltaría a una versión real

@@ -27,7 +27,7 @@ function renderEmptyCart() {
   renderSteps('datos');
   document.getElementById('checkout-content').innerHTML = `
     <div class="empty-state">
-      <div class="icon">🛒</div>
+      <div class="icon">${ICONS.cart(40)}</div>
       <h3>Tu carrito está vacío</h3>
       <p>Agregá productos del catálogo antes de continuar.</p>
       <a href="index.html" class="btn btn-primary" style="margin-top:14px;">Ver catálogo</a>
@@ -126,8 +126,8 @@ function renderStepPago(checkoutData) {
   document.getElementById('checkout-content').innerHTML = `
     <div class="card">
       <div class="method-tabs">
-        <div class="method-tab ${selectedMethod === 'tarjeta' ? 'active' : ''}" data-method="tarjeta">💳 Tarjeta</div>
-        <div class="method-tab ${selectedMethod === 'transferencia' ? 'active' : ''}" data-method="transferencia">🏦 Transferencia</div>
+        <div class="method-tab ${selectedMethod === 'tarjeta' ? 'active' : ''}" data-method="tarjeta">${ICONS.creditCard(15)} Tarjeta</div>
+        <div class="method-tab ${selectedMethod === 'transferencia' ? 'active' : ''}" data-method="transferencia">${ICONS.bank(15)} Transferencia</div>
       </div>
       <div id="method-body"></div>
     </div>
@@ -171,7 +171,7 @@ function renderCardForm(checkoutData) {
 
     <div id="card-form-fields" style="${selectedCardBrand ? '' : 'display:none;'}">
       <div class="card-visual">
-        <div class="top-row"><span id="cv-brand">${brand ? brand.label : 'Tarjeta'}</span><span>💳</span></div>
+        <div class="top-row"><span id="cv-brand">${brand ? brand.label : 'Tarjeta'}</span><span>${ICONS.creditCard(20)}</span></div>
         <div class="num" id="cv-number">•••• •••• •••• ••••</div>
         <div class="bottom-row"><span id="cv-name">NOMBRE APELLIDO</span><span id="cv-expiry">MM/AA</span></div>
       </div>
@@ -336,13 +336,13 @@ function renderTransferForm(checkoutData) {
       <button class="btn btn-secondary btn-sm copy-btn" id="copy-alias">Copiar alias</button>
       <div class="text-muted" style="font-size:13px; margin-top:18px;">Monto exacto a transferir</div>
       <div class="amount">${formatARS(order.monto_total)}</div>
-      <div class="countdown" id="countdown">⏱ Reserva de stock: 15:00</div>
+      <div class="countdown" id="countdown">${ICONS.clock(14)} Reserva de stock: 15:00</div>
     </div>
 
     <div style="margin-top:22px;">
       <label style="display:block; font-size:13.5px; font-weight:600; margin-bottom:8px;">Comprobante de transferencia</label>
       <div class="upload-box" id="upload-box">
-        <div id="upload-placeholder">📎 Hacé clic para subir la foto o captura del comprobante</div>
+        <div id="upload-placeholder">${ICONS.paperclip(16)} Hacé clic para subir la foto o captura del comprobante</div>
         <input type="file" id="file-input" accept="image/*" style="display:none;">
       </div>
     </div>
@@ -367,7 +367,7 @@ function renderTransferForm(checkoutData) {
     reader.onload = () => {
       uploadedDataUrl = reader.result;
       uploadBox.classList.add('has-file');
-      uploadBox.innerHTML = `<div>✅ Comprobante cargado</div><div class="upload-preview"><img src="${uploadedDataUrl}" alt="Comprobante"></div><div class="hint" style="margin-top:8px;">Hacé clic para cambiar la imagen</div>`;
+      uploadBox.innerHTML = `<div>${ICONS.checkCircle(16)} Comprobante cargado</div><div class="upload-preview"><img src="${uploadedDataUrl}" alt="Comprobante"></div><div class="hint" style="margin-top:8px;">Hacé clic para cambiar la imagen</div>`;
       uploadBox.appendChild(fileInput);
       submitBtn.disabled = false;
     };
@@ -400,7 +400,7 @@ function startCountdown(venceEnIso) {
     const totalSec = Math.floor(msLeft / 1000);
     const m = Math.floor(totalSec / 60);
     const s = totalSec % 60;
-    if (el) el.textContent = `⏱ Reserva de stock: ${m}:${String(s).padStart(2, '0')}`;
+    if (el) el.innerHTML = `${ICONS.clock(14)} Reserva de stock: ${m}:${String(s).padStart(2, '0')}`;
   }
   tick();
   countdownTimer = setInterval(tick, 1000);
@@ -417,7 +417,7 @@ function renderCancelled() {
   renderSteps('pago');
   document.getElementById('checkout-content').innerHTML = `
     <div class="status-screen" style="margin:20px auto 0;">
-      <div class="status-icon cancelled">⏳</div>
+      <div class="status-icon cancelled">${ICONS.hourglass(30)}</div>
       <h2>Se venció la reserva</h2>
       <p class="text-muted">Pasaron los 15 minutos y no llegó el comprobante, así que liberamos el stock. Podés volver a armar tu pedido cuando quieras.</p>
       <a href="index.html" class="btn btn-primary" style="margin-top:18px;">Volver al catálogo</a>

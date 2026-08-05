@@ -23,8 +23,13 @@ const RESERVA_MIN = 15;
 
 const ALIAS_MP = 'bazario.mp';
 const WHATSAPP = '11 5555-5555';
+const WHATSAPP_WA_LINK = 'https://wa.me/541155555555';
+const CONTACT_PHONE_TEL = 'tel:+541155555555';
+const CONTACT_EMAIL = 'contacto@bazario.com.ar';
 const SUCURSAL_DIRECCION = 'Av. Siempre Viva 1234, CABA';
 const SUCURSAL_HORARIO = 'Lunes a viernes 9 a 18h · Sábados 9 a 13h';
+const LS_CONSULTAS = 'ac_consultas';
+const LS_CONSULTA_SEQ = 'ac_consulta_seq';
 
 // Pasarela de pagos simulada: cada tarjeta tiene su propio recargo,
 // igual que en una pasarela real (débito sin recargo, crédito con
@@ -332,9 +337,48 @@ function metodoPagoLabel(order) {
 }
 function entregaInfoHtml(order) {
   if (order.tipo_entrega === 'retiro_sucursal') {
-    return `📍 Retiro en sucursal — ${SUCURSAL_DIRECCION}.<br>${SUCURSAL_HORARIO}.`;
+    return `${ICONS.pin(15)} Retiro en sucursal — ${SUCURSAL_DIRECCION}.<br>${SUCURSAL_HORARIO}.`;
   }
-  return `🚚 Envío a domicilio${order.direccion ? ' a ' + order.direccion : ''}. Te avisamos por mail cuando salga.`;
+  return `${ICONS.truck(15)} Envío a domicilio${order.direccion ? ' a ' + order.direccion : ''}. Te avisamos por mail cuando salga.`;
+}
+
+// ---------- consultas rápidas ----------
+// Mensajes del widget de "contacto rápido": no se envían a ningún
+// lado de verdad (no hay backend), pero quedan visibles en el panel
+// admin como si hubiesen llegado, para que se pueda simular el
+// seguimiento de una consulta.
+function nextConsultaId() {
+  const seq = readLS(LS_CONSULTA_SEQ, 0) + 1;
+  writeLS(LS_CONSULTA_SEQ, seq);
+  return 'C-' + seq;
+}
+function getConsultas() {
+  return readLS(LS_CONSULTAS, []);
+}
+function saveConsulta({ nombre, contacto, mensaje }) {
+  const consulta = {
+    id: nextConsultaId(),
+    nombre,
+    contacto,
+    mensaje,
+    estado: 'nueva',
+    creado_en: new Date().toISOString(),
+  };
+  const consultas = getConsultas();
+  consultas.unshift(consulta);
+  writeLS(LS_CONSULTAS, consultas);
+  return consulta;
+}
+function marcarConsultaRespondida(id) {
+  const consultas = getConsultas();
+  const consulta = consultas.find((c) => c.id === id);
+  if (!consulta) return null;
+  consulta.estado = 'respondida';
+  writeLS(LS_CONSULTAS, consultas);
+  return consulta;
+}
+function consultasNuevasCount() {
+  return getConsultas().filter((c) => c.estado === 'nueva').length;
 }
 
 // ---------- admin (mock, sin seguridad real — es una demo) ----------
@@ -358,6 +402,8 @@ function resetDemo() {
   localStorage.removeItem(LS_CART);
   localStorage.removeItem(LS_ORDERS);
   localStorage.removeItem(LS_SEQ);
+  localStorage.removeItem(LS_CONSULTAS);
+  localStorage.removeItem(LS_CONSULTA_SEQ);
   sessionStorage.removeItem(LS_ADMIN);
   showToast('Demo reiniciada');
   setTimeout(() => {

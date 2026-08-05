@@ -27,7 +27,7 @@ function renderOrdersList() {
   if (!orders.length) {
     wrap.innerHTML = `
       <div class="empty-state">
-        <div class="icon">✨</div>
+        <div class="icon">${ICONS.sparkles(40)}</div>
         <h3>No hay pedidos esperando confirmación</h3>
         <p>Cuando un cliente suba un comprobante en la web, va a aparecer acá.</p>
         <a href="../index.html" class="btn btn-secondary" style="margin-top:10px;">Simular un pedido desde la tienda</a>
@@ -47,7 +47,7 @@ function renderOrdersList() {
       </div>
       <div class="actions">
         <div class="amount">${formatARS(o.monto_total)}</div>
-        <button class="btn btn-primary btn-sm" data-confirm="${o.id}">✓ Confirmar pago</button>
+        <button class="btn btn-primary btn-sm" data-confirm="${o.id}">${ICONS.checkCircle(14)} Confirmar pago</button>
         <button class="btn btn-secondary btn-sm" data-view-receipt="${o.id}">Ver comprobante</button>
       </div>
     </div>`

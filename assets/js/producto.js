@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <button class="btn btn-primary btn-block" id="add-to-cart-btn">Agregar al carrito — ${formatARS(product.price)}</button>
       <div class="info-box">
-        🚚 Envío a domicilio o retiro en sucursal. Pagás con tarjeta (aprobación al instante) o por transferencia.
+        ${ICONS.truck(15)} Envío a domicilio o retiro en sucursal. Pagás con tarjeta (aprobación al instante) o por transferencia.
       </div>
     </div>
   `;

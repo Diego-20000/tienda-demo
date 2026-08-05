@@ -11,7 +11,7 @@
 <body>
 
 <div class="demo-banner">
-  🔧 <strong>Demo de prototipo</strong> — confirmar acá no envía plata real ni mails reales.
+  <span class="icon-slot" data-icon="settings" data-size="14"></span> <strong>Demo de prototipo</strong> — confirmar acá no envía plata real ni mails reales.
   <button data-reset-demo>Reiniciar demo</button>
 </div>
 
@@ -19,11 +19,12 @@
   <aside class="admin-sidebar">
     <div class="brand"><span class="logo-mark">B</span> Bazario</div>
     <nav>
-      <a href="pedidos.html" data-admin-nav="pedidos">📥 Pedidos por confirmar</a>
-      <a href="productos.html" data-admin-nav="productos">🍯 Productos</a>
-      <a href="historial.html" data-admin-nav="historial">📋 Historial</a>
-      <a href="../index.html">🛍️ Ver tienda</a>
-      <a href="#" data-admin-logout>🚪 Salir</a>
+      <a href="pedidos.html" data-admin-nav="pedidos"><span class="icon-slot" data-icon="inbox" data-size="16"></span> Pedidos por confirmar</a>
+      <a href="productos.html" data-admin-nav="productos"><span class="icon-slot" data-icon="tag" data-size="16"></span> Productos</a>
+      <a href="consultas.html" data-admin-nav="consultas"><span class="icon-slot" data-icon="messageCircle" data-size="16"></span> Consultas <span class="nav-badge" id="consultas-badge" style="display:none;"></span></a>
+      <a href="historial.html" data-admin-nav="historial"><span class="icon-slot" data-icon="list" data-size="16"></span> Historial</a>
+      <a href="../index.html"><span class="icon-slot" data-icon="shopBag" data-size="16"></span> Ver tienda</a>
+      <a href="#" data-admin-logout><span class="icon-slot" data-icon="logout" data-size="16"></span> Salir</a>
     </nav>
   </aside>
 
@@ -40,6 +41,7 @@
   </main>
 </div>
 
+<script src="../assets/js/icons.js"></script>
 <script src="../assets/js/placeholders.js"></script>
 <script src="../assets/js/data.js"></script>
 <script src="../assets/js/store.js"></script>

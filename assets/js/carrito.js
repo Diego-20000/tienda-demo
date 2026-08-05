@@ -7,7 +7,7 @@ function renderCart() {
   if (!lines.length) {
     wrap.innerHTML = `
       <div class="empty-state">
-        <div class="icon">🛒</div>
+        <div class="icon">${ICONS.cart(40)}</div>
         <h3>Tu carrito está vacío</h3>
         <p>Todavía no agregaste ningún producto.</p>
         <a href="index.html" class="btn btn-primary" style="margin-top:14px;">Ver catálogo</a>

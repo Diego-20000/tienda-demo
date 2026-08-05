@@ -4,6 +4,15 @@ function renderAdminShell(active) {
   document.querySelectorAll('[data-admin-nav]').forEach((a) => {
     a.classList.toggle('active', a.dataset.adminNav === active);
   });
+  renderConsultasBadge();
+}
+
+function renderConsultasBadge() {
+  document.querySelectorAll('#consultas-badge').forEach((el) => {
+    const n = consultasNuevasCount();
+    el.textContent = n;
+    el.style.display = n > 0 ? 'inline-flex' : 'none';
+  });
 }
 
 function showReceiptModal(order) {
@@ -29,10 +38,10 @@ function showEmailPreviewModal(order) {
   overlay.innerHTML = `
     <div class="modal-box">
       <button class="modal-close" data-close>✕</button>
-      <h3 class="mt-0">✉️ Mail enviado automáticamente</h3>
+      <h3 class="mt-0">${ICONS.mail(18)} Mail enviado automáticamente</h3>
       <p class="hint" style="margin-top:-8px;">Simulación — en producción esto lo dispara un mail transaccional real al confirmarse el pago.</p>
       <div class="email-preview">
-        <div class="email-head">Para: ${order.cliente_email}<br>Asunto: Tu pedido ${order.id} está confirmado ✅</div>
+        <div class="email-head">Para: ${order.cliente_email}<br>Asunto: Tu pedido ${order.id} está confirmado</div>
         <div class="email-body">
           <p>¡Hola ${order.cliente_nombre.split(' ')[0]}!</p>
           <p>Confirmamos tu pedido <strong>${order.id}</strong>:</p>

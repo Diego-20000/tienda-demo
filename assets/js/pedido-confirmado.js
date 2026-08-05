@@ -33,12 +33,12 @@ function render() {
   if (order.estado === 'pendiente_confirmar') {
     wrap.innerHTML = `
       <div class="status-screen">
-        <div class="status-icon pending">🕒</div>
+        <div class="status-icon pending">${ICONS.clock(30)}</div>
         <h1>¡Recibimos tu comprobante!</h1>
         <p class="text-muted">Recibimos tu comprobante, te confirmamos en breve.</p>
         ${orderBoxHtml(order)}
         <div class="flex gap-8" style="justify-content:center; margin-top:20px;">
-          <button class="btn btn-secondary" onclick="location.reload()">🔄 Actualizar estado</button>
+          <button class="btn btn-secondary" onclick="location.reload()">${ICONS.refresh(14)} Actualizar estado</button>
           <a href="index.html" class="btn btn-ghost">Volver al catálogo</a>
         </div>
         <p class="hint text-muted" style="margin-top:14px; font-size:12.5px;">Tip demo: confirmá este pedido desde el <a href="admin/index.html">panel de administración</a> y volvé a "Actualizar estado" para ver el cambio.</p>
@@ -47,13 +47,13 @@ function render() {
   } else if (order.estado === 'pagado_confirmado') {
     wrap.innerHTML = `
       <div class="status-screen">
-        <div class="status-icon confirmed">✅</div>
+        <div class="status-icon confirmed">${ICONS.checkCircle(30)}</div>
         <h1>¡Pedido confirmado!</h1>
         <p class="text-muted">${order.metodo_pago === 'tarjeta' ? 'Tu pago fue aprobado al instante.' : 'Ya vimos tu pago.'}</p>
         ${orderBoxHtml(order)}
         <div class="info-box" style="text-align:left;">${entregaInfoHtml(order)}</div>
         <div class="flex gap-8" style="justify-content:center; margin-top:20px;">
-          <button class="btn btn-secondary" id="view-email">✉️ Ver mail que le llegó al cliente</button>
+          <button class="btn btn-secondary" id="view-email">${ICONS.mail(15)} Ver mail que le llegó al cliente</button>
           <a href="index.html" class="btn btn-ghost">Volver al catálogo</a>
         </div>
       </div>
@@ -62,7 +62,7 @@ function render() {
   } else if (order.estado === 'cancelado') {
     wrap.innerHTML = `
       <div class="status-screen">
-        <div class="status-icon cancelled">⏳</div>
+        <div class="status-icon cancelled">${ICONS.hourglass(30)}</div>
         <h1>Pedido cancelado</h1>
         <p class="text-muted">Se venció la reserva de 15 minutos sin comprobante y liberamos el stock.</p>
         ${orderBoxHtml(order)}
@@ -83,7 +83,7 @@ function showEmailModal(order) {
       <h3 class="mt-0">Vista previa del mail automático</h3>
       <p class="hint" style="margin-top:-8px;">Se dispara solo al confirmarse el pago. En producción se envía con un proveedor real de mail transaccional.</p>
       <div class="email-preview">
-        <div class="email-head">Para: ${order.cliente_email}<br>Asunto: Tu pedido ${order.id} está confirmado ✅</div>
+        <div class="email-head">Para: ${order.cliente_email}<br>Asunto: Tu pedido ${order.id} está confirmado</div>
         <div class="email-body">
           <p>¡Hola ${order.cliente_nombre.split(' ')[0]}!</p>
           <p>Confirmamos tu pedido <strong>${order.id}</strong>:</p>
