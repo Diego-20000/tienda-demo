@@ -34,6 +34,12 @@ ningún negocio real hasta que haya compromiso.
    otro si son varios, como si se los estuviera dictando un amigo, no
    como una entrega de documento. Esto aplica siempre que se le sugiera
    qué contestarle a alguien, no solo la primera vez.
+6. **Tono de los mensajes, no solo la estructura (08/09/2026)**: hablar
+   fluido, sin trabarse ni sonar acartonado — frases cortas y naturales,
+   como hablaría Diego de verdad, no una redacción prolija. Y nada de
+   insistir ni presionar para que contesten — Diego lo dijo explícito:
+   "no me gusta insistir". Ofrecer, decir lo justo, y dejar que la otra
+   persona decida sin empujarla.
 
 ## Dónde está todo (para no perder el hilo entre sesiones)
 
