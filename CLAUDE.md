@@ -48,6 +48,16 @@ ningún negocio real hasta que haya compromiso.
    (a un contacto distinto, o un mensaje de seguimiento) tiene que sonar
    distinto a los anteriores, no reciclar la misma oración palabra por
    palabra solo cambiando el nombre.
+9. **Mensajes de WhatsApp: sin mayúsculas al arrancar oración y sin
+   puntuación cargada (08/09/2026).** Nada de punto final después de
+   cada frase ni de mayúscula inicial constante, eso "hace ver
+   estructurado" según Diego. Escribir como se textea de verdad: todo en
+   minúscula salvo nombres propios, comas sueltas nomás, una sola
+   pregunta al final sin que parezca redactado.
+10. **Español neutro cuando Diego lo pida (08/09/2026).** Usar "tú" en
+    vez de "vos" y evitar modismos argentinos si lo pide puntualmente
+    (no es la default, la default sigue siendo con "vos" para el
+    catálogo de Hurlingham, que es público de Buenos Aires).
 
 ## Proceso en etapas (decidido 08/09/2026, a Diego le gusta trabajar así)
 
