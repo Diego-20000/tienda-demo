@@ -64,6 +64,16 @@ ningún negocio real hasta que haya compromiso.
    entra algún cambio chico gratis por mes o todo cambio extra se cobra
    aparte.
 
+## Lecciones de outreach en vivo (ir sumando acá)
+
+- **08/09/2026 — no soltar al lead que dice "me interesa pero estoy justa
+  de plata".** Con Romina (Mundo Firulete) esa respuesta de ella era
+  interés real, no un no. Diego le contestó "dale, no pasa nada,
+  cualquier cosa me escribís" — cierra la conversación de hecho. Lo
+  correcto en Etapa 1 es seguir la charla: aclarar que no tiene que ser
+  caro y preguntarle qué necesitaría, sin cotizar todavía. Un "no pasa
+  nada" prematuro pierde leads que en realidad seguían abiertos.
+
 ## Dónde está todo (para no perder el hilo entre sesiones)
 
 - **Outreach / mensajes / seguimiento de contactos**: vive en el repo
