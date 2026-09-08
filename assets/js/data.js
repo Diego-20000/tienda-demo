@@ -1,6 +1,6 @@
 /* ============================================================
    Catálogo de muestra — Bazario
-   Tienda general ("un poco de todo"), sin logística de feria:
+   Tienda general ("un poco de todo"):
    envío a domicilio o retiro en sucursal.
    Estos son los datos "de fábrica": la primera vez que se abre
    la demo se copian a localStorage (ver initCatalog en store.js)

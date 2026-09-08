@@ -1,5 +1,7 @@
 # Bazario — demo de tienda online
 
+**Ver en vivo: https://diego-20000.github.io/tienda-demo/**
+
 Prototipo **solo de frontend** de una tienda online general ("un poco de todo"), pensado como pieza de demo/portfolio: catálogo, carrito, checkout con pasarela de pagos simulada (o transferencia con confirmación manual) y panel de administración. No hay backend, base de datos, pagos ni mails reales: todo corre en el navegador con `localStorage`, así que sirve para ver y clickear las pantallas, no para vender de verdad.
 
 Marca, productos, contacto y ubicación son **ficticios**, armados para que la demo se vea como una tienda real.
@@ -35,7 +37,9 @@ Los productos usan imágenes placeholder generadas en el momento (SVG, sin depen
 
 ## Cómo verlo
 
-No requiere instalación ni build. Alcanza con abrir `index.html` en el navegador, o levantar un server estático simple, por ejemplo:
+**En vivo (recomendado):** https://diego-20000.github.io/tienda-demo/
+
+**Local:** no requiere instalación ni build. Alcanza con abrir `index.html` en el navegador, o levantar un server estático simple, por ejemplo:
 
 ```bash
 python -m http.server 8080
