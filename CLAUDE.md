@@ -25,6 +25,15 @@ ningún negocio real hasta que haya compromiso.
    créditos, no packs — ver el mismo criterio de pricing que Glenox en
    `glenox/config.py`, pero para este producto es simple: seña + saldo al
    entregar, después mensual de hosting).
+5. **Cómo entregar los mensajes sugeridos a Diego (regla importante,
+   08/09/2026)**: nunca con estructura de markdown vistosa — nada de `---`
+   como separador, nada de encabezados en negrita por contacto, nada de
+   listas con viñetas para presentar mensajes de WhatsApp. Diego lo
+   describió así: "tiene que ser que hable con una persona no con una
+   IA". Escribir los mensajes sugeridos como texto corrido, uno atrás del
+   otro si son varios, como si se los estuviera dictando un amigo, no
+   como una entrega de documento. Esto aplica siempre que se le sugiera
+   qué contestarle a alguien, no solo la primera vez.
 
 ## Dónde está todo (para no perder el hilo entre sesiones)
 
