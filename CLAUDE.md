@@ -41,6 +41,29 @@ ningún negocio real hasta que haya compromiso.
    "no me gusta insistir". Ofrecer, decir lo justo, y dejar que la otra
    persona decida sin empujarla.
 
+## Proceso en etapas (decidido 08/09/2026, a Diego le gusta trabajar así)
+
+1. **Contacto y descubrimiento** — primer mensaje de outreach, y cuando
+   contesta con interés, preguntar lo básico (cuántos productos, cobra en
+   la página o coordina por WhatsApp, envío o retiro). Todavía sin
+   cotizar nada acá.
+2. **Propuesta y seña** — con esa info se arma el precio. Si acepta, se
+   cobra una seña (30-50%) ANTES de tocar una sola línea con su marca —
+   esto es lo que evita repetir lo que pasó con la página de Priscila
+   (se armó todo gratis y después no se usó).
+3. **Armado personalizado** — recién acá se agarra el demo genérico
+   (`tienda-demo`) y se adapta: logo, colores, productos reales, forma de
+   cobrar del cliente real.
+4. **Revisión** — se muestra el resultado, el cliente pide ajustes.
+   Definir de entrada cuántas rondas de cambios entran en el precio para
+   que no se desborde el pedido.
+5. **Entrega y saldo** — se publica la página en serio (dominio/hosting
+   real, no más el demo genérico), se cobra el saldo restante, arranca el
+   hosting mensual.
+6. **Hosting y mantenimiento** — cobro recurrente mensual. Definir si
+   entra algún cambio chico gratis por mes o todo cambio extra se cobra
+   aparte.
+
 ## Dónde está todo (para no perder el hilo entre sesiones)
 
 - **Outreach / mensajes / seguimiento de contactos**: vive en el repo
