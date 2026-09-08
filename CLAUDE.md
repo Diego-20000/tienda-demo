@@ -1,0 +1,53 @@
+# Cómo trabajar con Diego en tienda-demo (venta de páginas web)
+
+Este repo es el **demo genérico** que Diego usa para vender páginas web a
+emprendimientos como servicio aparte de Glenox — pago único de armado +
+hosting mensual. Marca ficticia "Bazario" adentro, sin tocar nada de
+ningún negocio real hasta que haya compromiso.
+
+**Demo en vivo**: https://diego-20000.github.io/tienda-demo/
+
+## Reglas fijas
+
+1. **Nunca mostrar nada de IA en el producto/README que ve un prospecto.**
+   El historial de commits sí lleva firma de Claude (obligatorio del lado
+   mío, no negociable) pero eso no es visible para nadie que solo mire la
+   web o el README — Diego prefiere que así se mantenga.
+2. **Demo genérico primero, seña antes de armar a medida.** Nunca repetir
+   el error de la página de Priscila (armar todo a medida antes de que
+   haya compromiso real — terminó sin usarse). Mostrar este demo genérico,
+   y solo cuando el prospecto confirma interés real, pedir seña antes de
+   personalizar con su marca/catálogo.
+3. **Siempre aclarar que el diseño es 100% personalizable** (colores,
+   productos, todo) en cualquier mensaje de outreach — decisión explícita
+   de Diego, 08/09/2026.
+4. **Cobro**: pago único de armado + hosting mensual recurrente (no
+   créditos, no packs — ver el mismo criterio de pricing que Glenox en
+   `glenox/config.py`, pero para este producto es simple: seña + saldo al
+   entregar, después mensual de hosting).
+
+## Dónde está todo (para no perder el hilo entre sesiones)
+
+- **Outreach / mensajes / seguimiento de contactos**: vive en el repo
+  `glenox`, no acá — `glenox/docs/outreach-villa-tesei-2026-09.md`,
+  sección "Outreach paralelo: venta de páginas web". Ahí están los
+  mensajes ya armados con links `wa.me` clickeables (abren WhatsApp con
+  el texto cargado) para cada emprendimiento del catálogo Bien de
+  Hurlingham (bien.hurlingham.gob.ar), con nombre, rubro y estado.
+- **Este repo (`tienda-demo`)**: solo el producto en sí (`index.html`,
+  `carrito.html`, `checkout.html`, `producto.html`, `admin/`, `assets/`)
+  y este `CLAUDE.md`. Nada de estrategia de venta acá — eso va en glenox.
+- **Chats de WhatsApp personales** (ej. la conversación con Priscila que
+  reveló el freno del monotributo): si Diego sube un `.zip` de exportación
+  de WhatsApp, es un archivo binario — hay que `unzip` primero, no se
+  puede leer directo como texto (probado 08/09/2026 con el chat de
+  Priscila). Guardar el hallazgo relevante en `glenox/CHANGELOG.md`
+  (sección de insights de mercado), no dejarlo perdido en un chat.
+
+## Comando `/tienda`
+
+Cuando Diego escribe `/tienda`, releer este archivo entero primero, y
+después `glenox/docs/outreach-villa-tesei-2026-09.md` (sección de venta
+de páginas web) para tener el estado actual de a quién se le mandó
+mensaje y quién contestó, antes de responder cualquier cosa sobre este
+negocio.
