@@ -99,6 +99,22 @@ ningún negocio real hasta que haya compromiso.
   bajar el piso de entrada o tener una version mas chica/barata (menos
   productos, sin catalogo editable, etc.) para no perder leads por precio
   antes de mostrar valor real.
+- **09/09/2026, criterio para decidir página web vs Glenox por tipo de
+  negocio (Diego lo corrigió después de un primer intento mal repartido
+  en el rubro Deco y Hogar).** No es "cualquier negocio con WhatsApp
+  puede ir a cualquiera de los dos productos":
+  - **Página web (catálogo + carrito)**: productos personalizables a
+    medida que el cliente necesita **ver** antes de decidir — impresión
+    3D, resina, grabado láser, piedras/acero, artesanías, decoración,
+    ropa/estampado. El cliente quiere mirar fotos/variantes de un
+    catálogo, no charlar con un bot.
+  - **Glenox (chatbot)**: negocios con **mucho volumen de consultas
+    repetitivas simples** que hay que responder rápido, a cualquier
+    hora — pedidos de comida, turnos, catálogo de precio fijo (kiosco,
+    almacén, peluquería, rotisería).
+  - Antes de armar los mensajes de un rubro nuevo, pensar primero a cuál
+    de los dos tipos pertenece la mayoría de los negocios de ese rubro,
+    no repartir a mitad y mitad por default.
 
 ## Dónde está todo (para no perder el hilo entre sesiones)
 
