@@ -21,44 +21,57 @@ ningún negocio real hasta que haya compromiso.
 3. **Siempre aclarar que el diseño es 100% personalizable** (colores,
    productos, todo) en cualquier mensaje de outreach, decisión explícita
    de Diego, 08/09/2026.
-4. **Cobro**: pago único de armado + hosting mensual recurrente (no
-   créditos, no packs, ver el mismo criterio de pricing que Glenox en
-   `glenox/config.py`, pero para este producto es simple: seña + saldo al
-   entregar, después mensual de hosting).
+4. **Cobro — modelo de 3 pagos + mensual recurrente (corregido 09/09/2026,
+   versión final acordada con Diego).** No es "seña + saldo" simple, porque
+   Diego paga servidor y dominio en USD de su bolsillo antes de que el
+   cliente vea nada online, y eso tiene que estar cubierto, no adivinado:
 
-   **Números concretos (recalculados 09/09/2026 con precios reales de
-   mercado, después de un primer intento que se fue al otro extremo —
-   "para esos precios se lo hago gratis", corrigió Diego).** Referencia de
-   mercado real en Argentina 2026 (búsqueda web): página catálogo custom por
-   freelance USD 600-905 (~$830.000-1.260.000 ARS con el tipo de cambio del
-   proyecto, ~$1.390 ARS/USD), mantenimiento web básico $25.000-50.000
-   ARS/mes, hosting compartido solo (sin soporte) $5.000-15.000 ARS/mes.
+   - **Pago 1 — Seña (30% del armado)**: al confirmar el trabajo, antes de
+     tocar nada real. Con esto Diego arma el prototipo (personaliza la
+     plantilla `tienda-demo` con marca/colores/catálogo del cliente).
+   - **Pago 2 — Costo real de servidor + dominio**: cuando el prototipo
+     está aprobado y hay que subirlo de verdad, el cliente cubre el costo
+     real de la infraestructura que Diego tiene que pagar en USD (dominio
+     .com.ar ~$8.500 ARS/año, servidor ~USD 5-20/mes según el plan — con el
+     tipo de cambio del proyecto, ~$1.390 ARS/USD, esto es aprox.
+     $15.000-25.000 ARS de una sola vez para cubrir el primer período). Este
+     pago no es ganancia de Diego, es el costo real que él adelanta.
+   - **Pago 3 — Saldo final (70% restante del armado)**: cuando la página ya
+     está subida y funcionando de verdad, no antes.
+   - **Mensual recurrente, después del lanzamiento**: $15.000-20.000 ARS/mes,
+     cubre la renovación de servidor + dominio prorrateada más un margen
+     chico por el soporte de Diego (cambios, dudas, que la página ande).
+     Sigue siendo código puro (no WordPress), así que no lleva mantenimiento
+     de agencia — pero sí lleva el costo real de la infra, que está en USD y
+     fluctúa con el dólar, no puede fijarse artificialmente bajo.
+   - **Add-on opcional — correo profesional** (Google Workspace o
+     Microsoft/WordPress mail con el dominio propio, ej. `hola@tumarca.com`):
+     si el cliente lo pide, se cobra aparte, no incluido en el mensual base
+     — Google Workspace ronda USD 6-7/mes por cuenta (~$8.000-9.700 ARS/mes),
+     eso se pasa directo más un margen chico.
+   - **Armado, referencia de rango total** (seña + costo infra + saldo):
+     $60.000-90.000 ARS para catálogo chico (hasta ~15 productos),
+     $90.000-130.000 ARS para catálogo más grande o con más personalización
+     — sigue siendo una fracción del freelance custom de mercado (USD
+     600-905, ver búsqueda de referencia más abajo), pero refleja trabajo y
+     costos reales, no trabajo gratis ni precio inventado sin base.
+   - **Preguntar presupuesto en la conversación (regla nueva 09/09/2026)**:
+     antes de tirar un número, si hay indicio de que el prospecto está
+     midiendo si le entra en el presupuesto (como preguntar el costo antes
+     de dar detalles del catálogo), preguntar directamente "¿tenés un
+     presupuesto en mente para esto?" — ayuda a calibrar la propuesta en vez
+     de adivinar o cotizar a ciegas.
+   - Nunca cotizar el número final en la primera charla de Etapa 1 (ver
+     proceso en etapas abajo) — depende de cuántos productos tiene el
+     catálogo y cuánta personalización quiere, eso se pregunta primero. Sí
+     se puede dar el rango orientativo si el prospecto lo pide para evaluar
+     si le cierra el presupuesto, como en este caso.
 
-   El público real son microemprendedoras (piezas de $3.000-15.000 ARS), y
-   como Diego reutiliza siempre la misma plantilla (`tienda-demo`, no
-   programa de cero por cliente) el trabajo es mucho más rápido que un
-   desarrollo custom — pero eso no significa cobrar como regalo, significa
-   cobrar bien por debajo del freelance custom, no por debajo del costo real:
-
-   - **Armado (pago único, seña 50% + saldo al entregar)**: $60.000-90.000
-     ARS para catálogo chico (hasta ~15 productos), $90.000-130.000 ARS para
-     catálogo más grande o con más personalización de marca. Sigue siendo
-     una fracción del freelance custom (~10-15% del precio de mercado
-     completo), pero refleja trabajo real, no trabajo gratis.
-   - **Hosting + mantenimiento mensual**: $8.000-12.000 ARS/mes según
-     tamaño de catálogo. **Corregido 09/09/2026 — Diego marcó que es código
-     puro (HTML/CSS/JS estático, no WordPress)**, no lleva el mantenimiento
-     que sí necesita un sitio en WordPress (parches de seguridad, plugins,
-     actualizaciones constantes) — por eso el número correcto está más cerca
-     del piso de hosting comoditizado ($5-15k) que del mantenimiento de
-     agencia ($25-50k+), con un poco de margen arriba por el soporte
-     personal de Diego (cambios, dudas, que la página ande). El armado en
-     sí sigue reflejando trabajo de código real, eso no cambia — lo que
-     cambia es que la recurrencia mensual no debe inflarse comparándola con
-     mantenimiento de WordPress, que no aplica acá.
-   - Nunca cotizar en la primera charla de Etapa 1 (ver proceso en etapas
-     abajo) — el número depende de cuántos productos tiene el catálogo y
-     cuánta personalización de marca quiere, eso se pregunta primero.
+   Referencia de mercado real en Argentina 2026 usada para calibrar (búsqueda
+   web): página catálogo custom por freelance USD 600-905, mantenimiento web
+   básico $25.000-50.000 ARS/mes, hosting compartido solo $5.000-15.000
+   ARS/mes, dominio .com.ar ~$8.500 ARS/año, VPS básico ~USD 10-20/mes según
+   compromiso anual o mensual.
 5. **Cómo entregar los mensajes sugeridos a Diego (regla importante,
    08/09/2026)**: nunca con estructura de markdown vistosa, nada de `---`
    como separador, nada de encabezados en negrita por contacto, nada de
