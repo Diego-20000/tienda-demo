@@ -78,12 +78,14 @@ ningún negocio real hasta que haya compromiso.
      — sigue siendo una fracción del freelance custom de mercado (USD
      600-905, ver referencia más abajo), pero refleja trabajo y costos
      reales, no trabajo gratis ni precio inventado sin base.
-   - **Preguntar presupuesto en la conversación (regla nueva 09/09/2026)**:
-     antes de tirar un número, si hay indicio de que el prospecto está
-     midiendo si le entra en el presupuesto (como preguntar el costo antes
-     de dar detalles del catálogo), preguntar directamente "¿tenés un
-     presupuesto en mente para esto?" — ayuda a calibrar la propuesta en vez
-     de adivinar o cotizar a ciegas.
+   - **Preguntar presupuesto SIEMPRE en Etapa 1, no como condicional (regla
+     09/09/2026, endurecida después de que Diego marcó "no te lo olvides")**:
+     no esperar una señal de que el prospecto está midiendo el presupuesto
+     para preguntarlo — va siempre, junto con las otras preguntas de
+     descubrimiento (cuántos productos, cómo cobra, envío o retiro), en el
+     mismo mensaje de Etapa 1. "¿Tenés un presupuesto en mente para esto?"
+     ayuda a calibrar la propuesta en vez de adivinar o cotizar a ciegas, y
+     como es fácil de olvidar si no está en la lista fija, va siempre.
    - Nunca cotizar el número final en la primera charla de Etapa 1 (ver
      proceso en etapas abajo) — depende de cuántos productos tiene el
      catálogo y cuánta personalización quiere, eso se pregunta primero. Sí
@@ -206,8 +208,11 @@ ningún negocio real hasta que haya compromiso.
   con dar el panorama sin número, si preguntan costo hay que tirar un rango.
 - **09/09/2026, Mariela (Eco vivero Matati) segundo lead interesado del
   rubro Deco y Hogar.** "Hola. Si me interesa" (18:46), directo y sin
-  objeciones. Falta Etapa 1: preguntarle cuántos productos, cómo cobra,
-  envío o retiro, antes de cotizar.
+  objeciones. Se le mandó Etapa 1 (cuántos productos, cómo cobra, envío o
+  retiro) sumando también la pregunta de presupuesto en mente desde el
+  primer mensaje de esta etapa, no como pregunta aparte después — Diego
+  marcó que no hay que olvidarse de incluirla siempre junto con las
+  preguntas de descubrimiento.
 
 ## Dónde está todo (para no perder el hilo entre sesiones)
 
