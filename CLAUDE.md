@@ -25,6 +25,33 @@ ningún negocio real hasta que haya compromiso.
    créditos, no packs, ver el mismo criterio de pricing que Glenox en
    `glenox/config.py`, pero para este producto es simple: seña + saldo al
    entregar, después mensual de hosting).
+
+   **Números concretos (recalculados 09/09/2026, después de que 180k ARS
+   espantó a Romina/Mundo Firulete):** el público real son microemprendedoras
+   vendiendo piezas de $3.000-15.000 ARS cada una, no empresas con presupuesto
+   de sistemas. Con el tipo de cambio del proyecto (~$1.390 ARS/USD,
+   `glenox/config.py`), 180k ARS eran ~USD 130 de entrada — 15 a 40 piezas
+   vendidas solo para cubrir el armado, demasiado riesgo percibido para
+   alguien que recién está viendo si le sirve.
+
+   Como se reutiliza siempre la misma plantilla (`tienda-demo`, solo se
+   personaliza color/logo/catálogo, no se programa de cero por cliente), el
+   costo real de Diego por cliente es bajo — el pricing tiene que reflejar
+   eso, no cobrar como consultora de software a medida:
+
+   - **Armado (pago único, seña 50% + saldo al entregar)**: $20.000-25.000
+     ARS para catálogo chico (hasta ~15 productos), $30.000-40.000 ARS para
+     catálogo más grande o con más personalización de marca. Bajar el piso
+     de entrada es la prioridad — un rechazo por precio en Etapa 2 pierde el
+     lead entero, mejor entrar bajo y que la recurrencia mensual sea el
+     negocio real.
+   - **Hosting/mantenimiento mensual**: $6.000-9.000 ARS/mes (según tamaño
+     de catálogo). Chico pero sostenible — a esa escala el volumen de
+     clientes recurrentes importa más que un pago único grande, y evita que
+     una emprendedora corte al primer mes por sentir que pagó de más.
+   - Nunca cotizar en la primera charla de Etapa 1 (ver proceso en etapas
+     abajo) — el número depende de cuántos productos tiene el catálogo y
+     cuánta personalización de marca quiere, eso se pregunta primero.
 5. **Cómo entregar los mensajes sugeridos a Diego (regla importante,
    08/09/2026)**: nunca con estructura de markdown vistosa, nada de `---`
    como separador, nada de encabezados en negrita por contacto, nada de
