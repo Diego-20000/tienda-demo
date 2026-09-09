@@ -35,23 +35,38 @@ ningún negocio real hasta que haya compromiso.
      plantilla `tienda-demo` con marca/colores/catálogo del cliente).
    - **Pago 2 — Costo real de servidor + dominio**: cuando el prototipo está
      aprobado y hay que subirlo de verdad, el cliente cubre el costo real de
-     infra que Diego paga en USD. Con AWS dedicado (no compartido) y el tipo
-     de cambio del proyecto (~$1.390 ARS/USD): dominio Donweb .com.ar
-     ~$8.500 ARS/año, o Namecheap .com ~USD 14/año renovación (~$19.500
-     ARS/año); servidor AWS (Lightsail con IP pública, no el plan nano de
-     $5 que es muy ajustado, conviene el de ~USD 10/mes para que ande bien)
-     ~$14.000 ARS/mes. Cubrir dominio (primer año completo) + servidor
-     (primer/segundo mes) de una: **$25.000-40.000 ARS** de una sola vez.
-     Este pago no es ganancia de Diego, es el costo real que él adelanta.
+     infra que Diego paga en USD: dominio Donweb .com.ar (~USD 6/año al
+     tipo de cambio) o Namecheap .com (~USD 14/año) + servidor AWS Lightsail
+     con IP pública (~USD 10/mes) por el primer/segundo mes. **Anclado en
+     USD ~15-25 de una sola vez**, convertido a ARS al momento real de
+     cobrarlo (no un número en pesos fijado hoy — ver nota de tipo de cambio
+     abajo). Este pago no es ganancia de Diego, es el costo real que él
+     adelanta.
    - **Pago 3 — Saldo final (70% restante del armado)**: cuando la página ya
      está subida y funcionando de verdad, no antes.
-   - **Mensual recurrente, después del lanzamiento**: **$18.000-25.000
-     ARS/mes** — cubre el servidor AWS dedicado (~$14.000 ARS/mes real) más
-     el dominio prorrateado (~$700-1.700 ARS/mes) más un margen de soporte
-     de Diego (cambios, dudas, que la página ande). Con AWS dedicado por
-     cliente (no compartido) el costo real de infra es mayor que un hosting
-     compartido — el número tiene que reflejar eso, sube respecto al cálculo
-     anterior que asumía servidor compartido.
+   - **Mensual recurrente, después del lanzamiento — ANCLADO EN USD, no en
+     pesos fijos (corrección importante 09/09/2026, Diego pidió pensarlo
+     bien "incluso con el cambio").** AWS cobra en USD todos los meses; si
+     Diego fija un número en pesos hoy y el dólar sube en 2-3 meses, termina
+     poniendo plata de su bolsillo para cubrir un cliente que paga de menos
+     sin que nadie lo note hasta que ya perdió varios meses. Mismo problema
+     que ya se resolvió en Glenox con `dolar_reajuste_scheduler` (ver
+     `glenox/CHANGELOG.md`, sección de reajuste mensual por tipo de cambio)
+     — la solución es la misma: **anclar el precio en USD y convertir a ARS
+     al momento de cada cobro**, no fijar un peso number que se pudre con la
+     inflación/devaluación.
+     - Ancla real: servidor AWS dedicado (~USD 10/mes) + dominio prorrateado
+       (~USD 0,50-1,20/mes) + margen de soporte de Diego (~USD 5-8/mes) =
+       **ancla de USD 15-19/mes**.
+       Al tipo de cambio del proyecto (~$1.390 ARS/USD) hoy eso son
+       ~$20.850-26.400 ARS/mes, pero el número real a cobrar cada mes tiene
+       que recalcularse contra el dólar del momento, no quedar fijo en esos
+       pesos. Si Diego cobra manual (no automatizado como Glenox con
+       Mercado Pago), como mínimo revisar el tipo de cambio cada 2-3 meses
+       y ajustar el monto en pesos que le pide al cliente, avisándole antes
+       (mismo criterio que el aviso de reajuste de Glenox).
+     - Con AWS dedicado por cliente (no compartido) el costo real de infra
+       es mayor que un hosting compartido — el ancla en USD ya lo refleja.
    - **Add-on opcional — correo profesional** (Google Workspace o
      Microsoft/WordPress mail con el dominio propio, ej. `hola@tumarca.com`):
      si el cliente lo pide, se cobra aparte, no incluido en el mensual base
