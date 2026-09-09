@@ -22,28 +22,36 @@ ningún negocio real hasta que haya compromiso.
    productos, todo) en cualquier mensaje de outreach, decisión explícita
    de Diego, 08/09/2026.
 4. **Cobro — modelo de 3 pagos + mensual recurrente (corregido 09/09/2026,
-   versión final acordada con Diego).** No es "seña + saldo" simple, porque
-   Diego paga servidor y dominio en USD de su bolsillo antes de que el
-   cliente vea nada online, y eso tiene que estar cubierto, no adivinado:
+   versión final con proveedores reales de Diego).** No es "seña + saldo"
+   simple, porque Diego paga servidor y dominio en USD de su bolsillo antes
+   de que el cliente vea nada online, y eso tiene que estar cubierto, no
+   adivinado. **Proveedores reales**: dominio por Donweb (.com.ar) o
+   Namecheap (.com/genéricos), servidor en **AWS dedicado por cliente** (no
+   hosting compartido — Diego prefiere todo separado, cada cliente con su
+   propia instancia).
 
    - **Pago 1 — Seña (30% del armado)**: al confirmar el trabajo, antes de
      tocar nada real. Con esto Diego arma el prototipo (personaliza la
      plantilla `tienda-demo` con marca/colores/catálogo del cliente).
-   - **Pago 2 — Costo real de servidor + dominio**: cuando el prototipo
-     está aprobado y hay que subirlo de verdad, el cliente cubre el costo
-     real de la infraestructura que Diego tiene que pagar en USD (dominio
-     .com.ar ~$8.500 ARS/año, servidor ~USD 5-20/mes según el plan — con el
-     tipo de cambio del proyecto, ~$1.390 ARS/USD, esto es aprox.
-     $15.000-25.000 ARS de una sola vez para cubrir el primer período). Este
-     pago no es ganancia de Diego, es el costo real que él adelanta.
+   - **Pago 2 — Costo real de servidor + dominio**: cuando el prototipo está
+     aprobado y hay que subirlo de verdad, el cliente cubre el costo real de
+     infra que Diego paga en USD. Con AWS dedicado (no compartido) y el tipo
+     de cambio del proyecto (~$1.390 ARS/USD): dominio Donweb .com.ar
+     ~$8.500 ARS/año, o Namecheap .com ~USD 14/año renovación (~$19.500
+     ARS/año); servidor AWS (Lightsail con IP pública, no el plan nano de
+     $5 que es muy ajustado, conviene el de ~USD 10/mes para que ande bien)
+     ~$14.000 ARS/mes. Cubrir dominio (primer año completo) + servidor
+     (primer/segundo mes) de una: **$25.000-40.000 ARS** de una sola vez.
+     Este pago no es ganancia de Diego, es el costo real que él adelanta.
    - **Pago 3 — Saldo final (70% restante del armado)**: cuando la página ya
      está subida y funcionando de verdad, no antes.
-   - **Mensual recurrente, después del lanzamiento**: $15.000-20.000 ARS/mes,
-     cubre la renovación de servidor + dominio prorrateada más un margen
-     chico por el soporte de Diego (cambios, dudas, que la página ande).
-     Sigue siendo código puro (no WordPress), así que no lleva mantenimiento
-     de agencia — pero sí lleva el costo real de la infra, que está en USD y
-     fluctúa con el dólar, no puede fijarse artificialmente bajo.
+   - **Mensual recurrente, después del lanzamiento**: **$18.000-25.000
+     ARS/mes** — cubre el servidor AWS dedicado (~$14.000 ARS/mes real) más
+     el dominio prorrateado (~$700-1.700 ARS/mes) más un margen de soporte
+     de Diego (cambios, dudas, que la página ande). Con AWS dedicado por
+     cliente (no compartido) el costo real de infra es mayor que un hosting
+     compartido — el número tiene que reflejar eso, sube respecto al cálculo
+     anterior que asumía servidor compartido.
    - **Add-on opcional — correo profesional** (Google Workspace o
      Microsoft/WordPress mail con el dominio propio, ej. `hola@tumarca.com`):
      si el cliente lo pide, se cobra aparte, no incluido en el mensual base
@@ -53,8 +61,8 @@ ningún negocio real hasta que haya compromiso.
      $60.000-90.000 ARS para catálogo chico (hasta ~15 productos),
      $90.000-130.000 ARS para catálogo más grande o con más personalización
      — sigue siendo una fracción del freelance custom de mercado (USD
-     600-905, ver búsqueda de referencia más abajo), pero refleja trabajo y
-     costos reales, no trabajo gratis ni precio inventado sin base.
+     600-905, ver referencia más abajo), pero refleja trabajo y costos
+     reales, no trabajo gratis ni precio inventado sin base.
    - **Preguntar presupuesto en la conversación (regla nueva 09/09/2026)**:
      antes de tirar un número, si hay indicio de que el prospecto está
      midiendo si le entra en el presupuesto (como preguntar el costo antes
@@ -70,8 +78,10 @@ ningún negocio real hasta que haya compromiso.
    Referencia de mercado real en Argentina 2026 usada para calibrar (búsqueda
    web): página catálogo custom por freelance USD 600-905, mantenimiento web
    básico $25.000-50.000 ARS/mes, hosting compartido solo $5.000-15.000
-   ARS/mes, dominio .com.ar ~$8.500 ARS/año, VPS básico ~USD 10-20/mes según
-   compromiso anual o mensual.
+   ARS/mes, dominio .com.ar (Donweb) ~$8.500 ARS/año, dominio .com
+   (Namecheap) ~USD 14/año renovación, AWS Lightsail dedicado desde USD
+   5/mes (nano, ajustado) hasta USD 10/mes (plan recomendado, con IP
+   pública).
 5. **Cómo entregar los mensajes sugeridos a Diego (regla importante,
    08/09/2026)**: nunca con estructura de markdown vistosa, nada de `---`
    como separador, nada de encabezados en negrita por contacto, nada de
