@@ -108,10 +108,13 @@ ningún negocio real hasta que haya compromiso.
     3D, resina, grabado láser, piedras/acero, artesanías, decoración,
     ropa/estampado. El cliente quiere mirar fotos/variantes de un
     catálogo, no charlar con un bot.
-  - **Glenox (chatbot)**: negocios con **mucho volumen de consultas
-    repetitivas simples** que hay que responder rápido, a cualquier
-    hora — pedidos de comida, turnos, catálogo de precio fijo (kiosco,
-    almacén, peluquería, rotisería).
+  - **Glenox (chatbot)**: pymes chicas y medianas con **mucho volumen
+    de consultas repetitivas simples** que hay que responder rápido, a
+    cualquier hora — pedidos de comida, turnos, catálogo de precio fijo
+    (almacén, peluquería, rotisería, y en general cualquier pyme con
+    flujo constante de WhatsApp). El objetivo de Glenox NO es el
+    kiosco puntual, es la pyme chica-mediana en general (corregido
+    09/09/2026, Diego lo aclaró explícito).
   - Antes de armar los mensajes de un rubro nuevo, pensar primero a cuál
     de los dos tipos pertenece la mayoría de los negocios de ese rubro,
     no repartir a mitad y mitad por default.
