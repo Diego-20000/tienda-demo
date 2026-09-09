@@ -190,6 +190,17 @@ ningún negocio real hasta que haya compromiso.
   - Antes de armar los mensajes de un rubro nuevo, pensar primero a cuál
     de los dos tipos pertenece la mayoría de los negocios de ese rubro,
     no repartir a mitad y mitad por default.
+- **09/09/2026, Andrea (Vientos de cedro) es el primer lead real que probó
+  el pricing recalculado — pidió costo antes de dar detalles del catálogo.**
+  Se le dio el panorama completo (seña 30%, pago de costo real de infra,
+  saldo final, mensual) avisándole de entrada que el pago de infra y el
+  mensual pueden variar según el dólar del momento — transparencia previa
+  en vez de sorpresa después. Se le preguntó también si tiene un presupuesto
+  en mente, para calibrar en vez de adivinar. Ver sección de Cobro arriba
+  para el detalle completo de cómo se llegó a estos números (recalculados
+  varias veces en la misma sesión: primero muy bajo — "para eso se lo hago
+  gratis" — después ajustado con precios reales de mercado, y por último
+  con el ancla en USD para no perder plata con la devaluación).
 
 ## Dónde está todo (para no perder el hilo entre sesiones)
 
