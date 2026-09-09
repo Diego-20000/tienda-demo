@@ -45,12 +45,17 @@ ningún negocio real hasta que haya compromiso.
      catálogo más grande o con más personalización de marca. Sigue siendo
      una fracción del freelance custom (~10-15% del precio de mercado
      completo), pero refleja trabajo real, no trabajo gratis.
-   - **Hosting + mantenimiento mensual**: $12.000-18.000 ARS/mes según
-     tamaño de catálogo. Por encima del hosting comoditizado ($5-15k) porque
-     incluye el soporte personal de Diego (cambios, dudas, que la página
-     ande), muy por debajo del mantenimiento profesional de agencia
-     ($25-50k+) porque no hay WordPress ni actualizaciones de seguridad
-     semanales que mantener.
+   - **Hosting + mantenimiento mensual**: $8.000-12.000 ARS/mes según
+     tamaño de catálogo. **Corregido 09/09/2026 — Diego marcó que es código
+     puro (HTML/CSS/JS estático, no WordPress)**, no lleva el mantenimiento
+     que sí necesita un sitio en WordPress (parches de seguridad, plugins,
+     actualizaciones constantes) — por eso el número correcto está más cerca
+     del piso de hosting comoditizado ($5-15k) que del mantenimiento de
+     agencia ($25-50k+), con un poco de margen arriba por el soporte
+     personal de Diego (cambios, dudas, que la página ande). El armado en
+     sí sigue reflejando trabajo de código real, eso no cambia — lo que
+     cambia es que la recurrencia mensual no debe inflarse comparándola con
+     mantenimiento de WordPress, que no aplica acá.
    - Nunca cotizar en la primera charla de Etapa 1 (ver proceso en etapas
      abajo) — el número depende de cuántos productos tiene el catálogo y
      cuánta personalización de marca quiere, eso se pregunta primero.
