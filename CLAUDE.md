@@ -91,6 +91,14 @@ ningún negocio real hasta que haya compromiso.
   correcto en Etapa 1 es seguir la charla: aclarar que no tiene que ser
   caro y preguntarle qué necesitaría, sin cotizar todavía. Un "no pasa
   nada" prematuro pierde leads que en realidad seguían abiertos.
+- **09/09/2026, 180.000 ARS de armado espantó a Romina (Mundo Firulete).**
+  Después de seguir la charla (leccion anterior), se le paso el costo
+  (180k armado + hosting mensual) y contesto "Es mucho para mi. Te
+  agradezco igual". Con este publico (emprendedoras chicas, algunas ya
+  con freno de plata declarado antes), ese numero parece alto. Evaluar
+  bajar el piso de entrada o tener una version mas chica/barata (menos
+  productos, sin catalogo editable, etc.) para no perder leads por precio
+  antes de mostrar valor real.
 
 ## Dónde está todo (para no perder el hilo entre sesiones)
 
