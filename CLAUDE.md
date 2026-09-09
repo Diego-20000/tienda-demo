@@ -200,7 +200,14 @@ ningún negocio real hasta que haya compromiso.
   para el detalle completo de cómo se llegó a estos números (recalculados
   varias veces en la misma sesión: primero muy bajo — "para eso se lo hago
   gratis" — después ajustado con precios reales de mercado, y por último
-  con el ancla en USD para no perder plata con la devaluación).
+  con el ancla en USD para no perder plata con la devaluación). Diego le
+  mandó el mensaje con el rango concreto (60k-130k armado, 20k-26k mensual)
+  después de que Diego pidiera explícito "decile más o menos" — no alcanza
+  con dar el panorama sin número, si preguntan costo hay que tirar un rango.
+- **09/09/2026, Mariela (Eco vivero Matati) segundo lead interesado del
+  rubro Deco y Hogar.** "Hola. Si me interesa" (18:46), directo y sin
+  objeciones. Falta Etapa 1: preguntarle cuántos productos, cómo cobra,
+  envío o retiro, antes de cotizar.
 
 ## Dónde está todo (para no perder el hilo entre sesiones)
 
