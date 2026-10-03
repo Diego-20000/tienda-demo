@@ -134,7 +134,23 @@ function renderStepPago(checkoutData) {
   `;
   document.querySelectorAll('.method-tab').forEach((tab) => {
     tab.addEventListener('click', () => {
-      selectedMethod = tab.dataset.method;
+      const nextMethod = tab.dataset.method;
+
+      if (selectedMethod === 'transferencia' && nextMethod === 'tarjeta') {
+        const pendingId = sessionStorage.getItem(SS_ORDER_ID);
+        const pendingOrder = pendingId ? getOrder(pendingId) : null;
+        if (pendingOrder?.estado === 'pendiente_pago') {
+          const restored = pendingOrder.items.every((item) => getProduct(item.productId));
+          if (restored) {
+            pendingOrder.items.forEach((item) => addToCart(item.productId, item.qty));
+            cancelPendingTransfer(pendingOrder.id);
+          }
+        }
+        sessionStorage.removeItem(SS_ORDER_ID);
+        uploadedDataUrl = null;
+      }
+
+      selectedMethod = nextMethod;
       document.querySelectorAll('.method-tab').forEach((t) => t.classList.remove('active'));
       tab.classList.add('active');
       renderMethodBody(checkoutData);
