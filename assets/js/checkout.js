@@ -140,10 +140,10 @@ function renderStepPago(checkoutData) {
         const pendingId = sessionStorage.getItem(SS_ORDER_ID);
         const pendingOrder = pendingId ? getOrder(pendingId) : null;
         if (pendingOrder?.estado === 'pendiente_pago') {
-          const restored = pendingOrder.items.every((item) => getProduct(item.productId));
-          if (restored) {
-            pendingOrder.items.forEach((item) => addToCart(item.productId, item.qty));
-            cancelPendingTransfer(pendingOrder.id);
+          const itemsToRestore = pendingOrder.items.filter((item) => getProduct(item.productId));
+          const cancelled = cancelPendingTransfer(pendingOrder.id);
+          if (cancelled) {
+            itemsToRestore.forEach((item) => addToCart(item.productId, item.qty));
           }
         }
         sessionStorage.removeItem(SS_ORDER_ID);
