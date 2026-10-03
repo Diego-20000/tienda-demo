@@ -20,9 +20,9 @@ function renderConsultas() {
       (c) => `
     <div class="order-card" style="grid-template-columns:1fr auto;">
       <div>
-        <h4>${c.nombre} <span class="badge badge-${c.estado === 'nueva' ? 'pendiente_confirmar' : 'pagado_confirmado'}" style="margin-left:6px;">${c.estado === 'nueva' ? 'Nueva' : 'Respondida'}</span></h4>
-        <div class="meta">${c.contacto} · ${formatDateTime(c.creado_en)}</div>
-        <p style="margin:8px 0 0; font-size:14px;">${c.mensaje}</p>
+        <h4>${escapeHtml(c.nombre)} <span class="badge badge-${c.estado === 'nueva' ? 'pendiente_confirmar' : 'pagado_confirmado'}" style="margin-left:6px;">${c.estado === 'nueva' ? 'Nueva' : 'Respondida'}</span></h4>
+        <div class="meta">${escapeHtml(c.contacto)} · ${formatDateTime(c.creado_en)}</div>
+        <p style="margin:8px 0 0; font-size:14px;">${escapeHtml(c.mensaje)}</p>
       </div>
       <div class="actions">
         ${c.estado === 'nueva' ? `<button class="btn btn-primary btn-sm" data-responder="${c.id}">${ICONS.checkCircle(14)} Marcar como respondida</button>` : ''}
