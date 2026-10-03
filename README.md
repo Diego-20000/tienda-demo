@@ -2,7 +2,7 @@
 
 **Ver en vivo: https://diego-20000.github.io/tienda-demo/**
 
-Prototipo **solo de frontend** de una tienda online general ("un poco de todo"), pensado como pieza de demo/portfolio: catálogo, carrito, checkout con pasarela de pagos simulada (o transferencia con confirmación manual) y panel de administración. No hay backend, base de datos, pagos ni mails reales: todo corre en el navegador con `localStorage`, así que sirve para ver y clickear las pantallas, no para vender de verdad.
+Prototipo **solo de frontend** de una tienda online general ("un poco de todo"), pensado como pieza de demo/portfolio: catálogo, carrito, checkout con pagos simulados, inventario de demostración, seguimiento de pedidos y panel de administración. No hay backend, base de datos, pagos ni mails reales: todo corre en el navegador con `localStorage`, así que sirve para ver y clickear las pantallas, no para vender de verdad.
 
 Marca, productos, contacto y ubicación son **ficticios**, armados para que la demo se vea como una tienda real.
 
@@ -17,6 +17,7 @@ Marca, productos, contacto y ubicación son **ficticios**, armados para que la d
 - **Pago por transferencia**: alias + monto exacto + cuenta regresiva de reserva de stock (15 min) + subida de comprobante, para confirmar a mano desde el panel admin.
 - Pantalla de estado del pedido, con vista previa del mail automático.
 - **Contacto rápido**: botón flotante con WhatsApp, teléfono y email (links reales — `wa.me` / `tel:` / `mailto:`), más un formulario corto para dejar una consulta si no se quiere escribir por WhatsApp. La consulta queda visible en el panel admin.
+- Inventario de muestra con estados de disponibilidad y edición desde el panel.
 - Responsive, pensado para verse bien también desde el celular.
 - Toda la iconografía es SVG propio (`assets/js/icons.js`), sin emojis ni librerías externas.
 
@@ -68,6 +69,6 @@ assets/js/icons.js       Librería de íconos SVG inline (reemplaza cualquier em
 assets/js/contact-widget.js   Botón flotante de contacto rápido
 ```
 
-## Qué le faltaría a una versión real
+## Verificación
 
-Esto es solo la maqueta de pantallas y flujo. Una implementación real necesitaría, como mínimo: backend con base de datos, una pasarela de pagos real (Mercado Pago, Stripe, etc. — nunca procesar tarjetas del lado del cliente como hace esta demo), subida de comprobante e imágenes de producto a almacenamiento real, envío de mail automático y autenticación de verdad en el panel de administración.
+El repositorio incluye validación de sintaxis y referencias locales, además de pruebas de navegador para los recorridos principales. Sigue siendo una demo: una versión comercial necesitaría backend, pagos reales, almacenamiento, correo y autenticación del lado servidor.
