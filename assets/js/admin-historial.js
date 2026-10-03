@@ -36,9 +36,9 @@ function renderHistory() {
           .map(
             (o) => `
           <tr>
-            <td><strong>${o.id}</strong></td>
-            <td>${o.cliente_nombre}<br><span class="text-muted" style="font-size:12px;">${o.cliente_email}</span></td>
-            <td style="max-width:220px;">${o.items.map((i) => `${i.qty}× ${i.name}`).join(', ')}</td>
+            <td><strong>${escapeHtml(o.id)}</strong></td>
+            <td>${escapeHtml(o.cliente_nombre)}<br><span class="text-muted" style="font-size:12px;">${escapeHtml(o.cliente_email)}</span></td>
+            <td style="max-width:220px;">${o.items.map((i) => `${i.qty}× ${escapeHtml(i.name)}`).join(', ')}</td>
             <td>${formatARS(o.metodo_pago === 'tarjeta' ? o.monto_pagado : o.monto_total)}</td>
             <td style="font-size:13px;">${metodoPagoLabel(o)}</td>
             <td style="font-size:13px;">${tipoEntregaLabel(o.tipo_entrega)}</td>
