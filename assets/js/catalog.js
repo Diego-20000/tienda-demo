@@ -50,12 +50,12 @@ function renderGrid() {
         <div class="thumb"><img src="${productImage(p)}" alt="${p.name}" loading="lazy"></div>
       </a>
       <div class="body">
-        <span class="cat">${categoryLabel(p.category)}</span>
-        <a href="producto.html?id=${p.id}"><h3>${p.name}</h3></a>
-        <span class="price">${formatARS(p.price)}</span>
+        <span class="cat">${escapeHtml(categoryLabel(p.category))}</span>
+        <a href="producto.html?id=${encodeURIComponent(p.id)}"><h3>${escapeHtml(p.name)}</h3></a>
+        <span class="price">${formatARS(p.price)}</span><span class="stock-note">${p.stock === 0 ? 'Agotado' : p.stock <= 5 ? `Últimas ${p.stock}` : `${p.stock} disponibles`}</span>
       </div>
       <div class="add-row">
-        <button class="btn btn-secondary btn-block btn-sm" data-add="${p.id}">Agregar al carrito</button>
+        <button class="btn btn-secondary btn-block btn-sm" data-add="${p.id}" ${p.stock === 0 ? 'disabled' : ''}>${p.stock === 0 ? 'Agotado' : 'Agregar al carrito'}</button>
       </div>
     `;
     grid.appendChild(card);
