@@ -413,9 +413,9 @@ function metodoPagoLabel(order) {
 }
 function entregaInfoHtml(order) {
   if (order.tipo_entrega === 'retiro_sucursal') {
-    return `${ICONS.pin(15)} Retiro en sucursal — ${SUCURSAL_DIRECCION}.<br>${SUCURSAL_HORARIO}.`;
+    return `${ICONS.pin(15)} Retiro en sucursal · ${escapeHtml(SUCURSAL_DIRECCION)}.<br>${escapeHtml(SUCURSAL_HORARIO)}.`;
   }
-  return `${ICONS.truck(15)} Envío a domicilio${order.direccion ? ' a ' + order.direccion : ''}. Te avisamos por mail cuando salga.`;
+  return `${ICONS.truck(15)} Envío a domicilio${order.direccion ? ' · ' + escapeHtml(order.direccion) : ''}. Te avisamos por mail cuando salga.`;
 }
 
 // ---------- consultas rápidas ----------
