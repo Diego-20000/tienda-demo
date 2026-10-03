@@ -2,14 +2,14 @@
 
 function itemsRowsHtml(order) {
   return order.items
-    .map((i) => `<div class="row"><span>${i.qty} × ${i.name}</span><span>${formatARS(i.unitPrice * i.qty)}</span></div>`)
+    .map((i) => `<div class="row"><span>${i.qty} × ${escapeHtml(i.name)}</span><span>${formatARS(i.unitPrice * i.qty)}</span></div>`)
     .join('');
 }
 
 function orderBoxHtml(order) {
   return `
     <div class="status-order-box">
-      <div class="row"><span>Nº de pedido</span><span><strong>${order.id}</strong></span></div>
+      <div class="row"><span>Nº de pedido</span><span><strong>${escapeHtml(order.id)}</strong></span></div>
       <div class="row"><span>Estado</span><span class="badge badge-${order.estado}">${ESTADO_LABELS[order.estado]}</span></div>
       ${itemsRowsHtml(order)}
       ${order.metodo_pago === 'tarjeta' ? `<div class="row"><span>Recargo (${order.comision_pct}%)</span><span>${formatARS(order.comision_monto)}</span></div>` : ''}
@@ -83,9 +83,9 @@ function showEmailModal(order) {
       <h3 class="mt-0">Vista previa del mail automático</h3>
       <p class="hint" style="margin-top:-8px;">Se dispara solo al confirmarse el pago. En producción se envía con un proveedor real de mail transaccional.</p>
       <div class="email-preview">
-        <div class="email-head">Para: ${order.cliente_email}<br>Asunto: Tu pedido ${order.id} está confirmado</div>
+        <div class="email-head">Para: ${escapeHtml(order.cliente_email)}<br>Asunto: Tu pedido ${order.id} está confirmado</div>
         <div class="email-body">
-          <p>¡Hola ${order.cliente_nombre.split(' ')[0]}!</p>
+          <p>¡Hola ${escapeHtml(order.cliente_nombre.split(' ')[0])}!</p>
           <p>Confirmamos tu pedido <strong>${order.id}</strong>:</p>
           <ul>${order.items.map((i) => `<li>${i.qty} × ${i.name}</li>`).join('')}</ul>
           <p><strong>Total: ${formatARS(order.metodo_pago === 'tarjeta' ? order.monto_pagado : order.monto_total)}</strong></p>
