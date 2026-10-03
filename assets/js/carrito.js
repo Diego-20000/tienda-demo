@@ -21,7 +21,7 @@ function renderCart() {
     <div class="cart-item" data-line="${l.product.id}">
       <div class="thumb"><img src="${productImage(l.product)}" alt="${l.product.name}"></div>
       <div class="grow">
-        <h4>${l.product.name}</h4>
+        <h4>${escapeHtml(l.product.name)}</h4>
         <div class="unit-price">${formatARS(l.product.price)} c/u</div>
         <div class="qty-stepper" style="margin-top:8px;">
           <button type="button" data-qty-minus="${l.product.id}">–</button>

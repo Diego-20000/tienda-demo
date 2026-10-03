@@ -1,9 +1,5 @@
-Releé primero el `CLAUDE.md` de este repo (`tienda-demo`) completo, y
-después `docs/outreach-villa-tesei-2026-09.md` del repo `glenox`
-(sección "Outreach paralelo: venta de páginas web") para ver el estado
-actual de contactos — antes de responder o hacer cualquier cosa
-relacionada al negocio de venta de páginas web.
+Revisá primero el estado actual del proyecto y su README.
 
-Resumí en 3-4 líneas el estado actual (cuántos contactados, cuántos
-interesados/clientes, próximo paso sugerido) antes de seguir con lo que
-Diego pida.
+Usá este comando para trabajar sobre la demo de tienda. Antes de terminar, comprobá que el catálogo, carrito, checkout y panel de administración sigan funcionando y que la documentación pública no exponga datos internos.
+
+No agregues información comercial o personal que no pertenezca al producto de demostración.

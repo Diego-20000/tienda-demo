@@ -16,15 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  document.title = product.name + ' — Bazario';
+  document.title = product.name + ' · Bazario';
 
   wrap.innerHTML = `
     <div class="gallery"><img src="${productImage(product)}" alt="${product.name}"></div>
     <div class="info">
-      <span class="cat">${categoryLabel(product.category)}</span>
-      <h1>${product.name}</h1>
+      <span class="cat">${escapeHtml(categoryLabel(product.category))}</span>
+      <h1>${escapeHtml(product.name)}</h1>
       <div class="price">${formatARS(product.price)}</div>
-      <p class="desc">${product.desc}</p>
+      <p class="desc">${escapeHtml(product.desc)}</p>
       <div class="qty-row">
         <span>Cantidad</span>
         <div class="qty-stepper">
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <button id="qty-plus" type="button">+</button>
         </div>
       </div>
-      <button class="btn btn-primary btn-block" id="add-to-cart-btn">Agregar al carrito — ${formatARS(product.price)}</button>
+      <button class="btn btn-primary btn-block" id="add-to-cart-btn" ${product.stock === 0 ? "disabled" : ""}>${product.stock === 0 ? "Agotado" : `Agregar al carrito · ${formatARS(product.price)}`}</button><div class="stock-detail">${product.stock === 0 ? "Sin stock" : product.stock <= 5 ? `Quedan ${product.stock} unidades` : `${product.stock} unidades disponibles`}</div>
       <div class="info-box">
         ${ICONS.truck(15)} Envío a domicilio o retiro en sucursal. Pagás con tarjeta (aprobación al instante) o por transferencia.
       </div>
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     refreshBtn();
   });
   addBtn.addEventListener('click', () => {
-    addToCart(product.id, currentQty);
+    if (!addToCart(product.id, currentQty)) return;
     showToast('Agregado al carrito');
     currentQty = 1;
     qtyValue.textContent = 1;

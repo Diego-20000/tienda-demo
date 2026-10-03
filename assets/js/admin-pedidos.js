@@ -41,9 +41,9 @@ function renderOrdersList() {
     <div class="order-card" data-order="${o.id}">
       <div class="receipt-thumb" data-view-receipt="${o.id}"><img src="${o.comprobante}" alt="Comprobante ${o.id}"></div>
       <div>
-        <h4>${o.id} — ${o.cliente_nombre}</h4>
-        <div class="meta">${o.cliente_email} · subido ${formatDateTime(o.comprobante_subido_en)} · ${tipoEntregaLabel(o.tipo_entrega)}</div>
-        <div class="items-list">${o.items.map((i) => `${i.qty} × ${i.name}`).join(', ')}</div>
+        <h4>${escapeHtml(o.id)} · ${escapeHtml(o.cliente_nombre)}</h4>
+        <div class="meta">${escapeHtml(o.cliente_email)} · subido ${formatDateTime(o.comprobante_subido_en)} · ${tipoEntregaLabel(o.tipo_entrega)}</div>
+        <div class="items-list">${o.items.map((i) => `${i.qty} × ${escapeHtml(i.name)}`).join(', ')}</div>
       </div>
       <div class="actions">
         <div class="amount">${formatARS(o.monto_total)}</div>

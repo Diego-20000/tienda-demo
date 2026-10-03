@@ -20,6 +20,7 @@ const LS_PRODUCTS = 'ac_products';
 const LS_CATEGORIES = 'ac_categories';
 const LS_PRODUCT_SEQ = 'ac_product_seq';
 const RESERVA_MIN = 15;
+const MAX_STOCK_PER_LINE = 99;
 
 const ALIAS_MP = 'bazario.mp';
 const WHATSAPP = '11 5555-5555';
@@ -47,6 +48,20 @@ function getCardBrand(id) {
 }
 
 // ---------- helpers genéricos ----------
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function normalizeProduct(product) {
+  const stock = Number.isInteger(product.stock) ? Math.max(0, product.stock) : 10;
+  return { ...product, stock };
+}
+
 function readLS(key, fallback) {
   try {
     const raw = localStorage.getItem(key);
@@ -69,7 +84,7 @@ function initCatalog() {
 initCatalog();
 
 function getProducts() {
-  return readLS(LS_PRODUCTS, SEED_PRODUCTS);
+  return readLS(LS_PRODUCTS, SEED_PRODUCTS).map(normalizeProduct);
 }
 function getCategories() {
   return readLS(LS_CATEGORIES, SEED_CATEGORIES);
@@ -156,18 +171,32 @@ function saveCart(cart) {
 }
 function addToCart(productId, qty) {
   const cart = getCart();
+  const product = getProduct(productId);
+  if (!product || product.stock <= 0) {
+    showToast('Este producto está agotado');
+    return false;
+  }
+
+  const requested = Math.max(1, Math.min(MAX_STOCK_PER_LINE, Number(qty) || 1));
   const existing = cart.find((i) => i.productId === productId);
-  if (existing) existing.qty += qty;
-  else cart.push({ productId, qty });
+  const currentQty = existing ? existing.qty : 0;
+  const nextQty = Math.min(product.stock, currentQty + requested);
+
+  if (existing) existing.qty = nextQty;
+  else cart.push({ productId, qty: nextQty });
+
   saveCart(cart);
+  if (nextQty < currentQty + requested) showToast('Agregamos hasta el stock disponible');
+  return true;
 }
 function setCartQty(productId, qty) {
   let cart = getCart();
+  const product = getProduct(productId);
   if (qty <= 0) {
     cart = cart.filter((i) => i.productId !== productId);
   } else {
     const existing = cart.find((i) => i.productId === productId);
-    if (existing) existing.qty = qty;
+    if (existing && product) existing.qty = Math.min(product.stock, MAX_STOCK_PER_LINE, Math.max(1, qty));
   }
   saveCart(cart);
 }
@@ -218,6 +247,9 @@ function getOrder(id) {
 function buildBaseOrder({ clienteNombre, clienteEmail, tipoEntrega, direccion }) {
   const lines = cartLines();
   if (!lines.length) return null;
+
+  const invalidLine = lines.find((line) => line.qty > line.product.stock || line.product.stock <= 0);
+  if (invalidLine) return null;
   return {
     id: nextOrderId(),
     cliente_nombre: clienteNombre,
@@ -229,9 +261,47 @@ function buildBaseOrder({ clienteNombre, clienteEmail, tipoEntrega, direccion })
       unitPrice: l.product.price,
     })),
     monto_total: cartTotal(),
+    stock_reservado: false,
+    stock_restituido_en: null,
     tipo_entrega: tipoEntrega,
     direccion: direccion || null,
   };
+}
+
+function reserveStock(lines) {
+  const products = getProducts();
+  for (const line of lines) {
+    const product = products.find((p) => p.id === line.product.id);
+    if (!product || line.qty > product.stock) return false;
+  }
+
+  lines.forEach((line) => {
+    const product = products.find((p) => p.id === line.product.id);
+    product.stock -= line.qty;
+  });
+  writeLS(LS_PRODUCTS, products);
+  return true;
+}
+
+function restoreStock(order) {
+  if (!order?.stock_reservado || order.stock_restituido_en) return;
+  const products = getProducts();
+  order.items.forEach((item) => {
+    const product = products.find((p) => p.id === item.productId);
+    if (product) product.stock += item.qty;
+  });
+  writeLS(LS_PRODUCTS, products);
+  order.stock_restituido_en = new Date().toISOString();
+}
+
+function cancelPendingTransfer(orderId) {
+  const orders = readLS(LS_ORDERS, []);
+  const order = orders.find((o) => o.id === orderId);
+  if (!order || order.estado !== 'pendiente_pago') return null;
+  restoreStock(order);
+  order.estado = 'cancelado';
+  saveOrders(orders);
+  return order;
 }
 
 // Pago por transferencia: el pedido queda pendiente_pago con 15 min
@@ -240,6 +310,7 @@ function createOrder({ clienteNombre, clienteEmail, tipoEntrega, direccion }) {
   const base = buildBaseOrder({ clienteNombre, clienteEmail, tipoEntrega, direccion });
   if (!base) return null;
   const now = new Date();
+  if (!reserveStock(base.items.map((item) => ({ product: item, qty: item.qty })) )) return null;
   const vence = new Date(now.getTime() + RESERVA_MIN * 60000);
   const order = {
     ...base,
@@ -250,6 +321,8 @@ function createOrder({ clienteNombre, clienteEmail, tipoEntrega, direccion }) {
     comprobante: null,
     comprobante_subido_en: null,
     confirmado_en: null,
+    stock_reservado: true,
+    stock_restituido_en: null,
   };
   const orders = readLS(LS_ORDERS, []);
   orders.unshift(order);
@@ -258,15 +331,15 @@ function createOrder({ clienteNombre, clienteEmail, tipoEntrega, direccion }) {
   return order;
 }
 
-// Pago con tarjeta: la pasarela simulada aprueba al instante, así
-// que el pedido nace directo en pagado_confirmado — no hay reserva
-// de stock ni comprobante que esperar.
+// Pago con tarjeta: la pasarela simulada aprueba al instante y descuenta
+// el stock del catálogo.
 function createPaidOrder({ clienteNombre, clienteEmail, tipoEntrega, direccion, cardBrandId, cardLast4 }) {
   const base = buildBaseOrder({ clienteNombre, clienteEmail, tipoEntrega, direccion });
   if (!base) return null;
   const brand = getCardBrand(cardBrandId);
   const comisionPct = brand ? brand.fee : 0;
   const comisionMonto = Math.round(base.monto_total * (comisionPct / 100));
+  if (!reserveStock(base.items.map((item) => ({ product: item, qty: item.qty })) )) return null;
   const now = new Date();
   const order = {
     ...base,
@@ -282,6 +355,8 @@ function createPaidOrder({ clienteNombre, clienteEmail, tipoEntrega, direccion, 
     comprobante: null,
     comprobante_subido_en: null,
     confirmado_en: now.toISOString(),
+    stock_reservado: true,
+    stock_restituido_en: null,
   };
   const orders = readLS(LS_ORDERS, []);
   orders.unshift(order);
@@ -314,6 +389,7 @@ function expireStaleOrders() {
   let changed = false;
   orders.forEach((o) => {
     if (o.estado === 'pendiente_pago' && new Date(o.vence_en).getTime() < now) {
+      restoreStock(o);
       o.estado = 'cancelado';
       changed = true;
     }
@@ -332,14 +408,14 @@ function tipoEntregaLabel(tipo) {
   return tipo === 'retiro_sucursal' ? 'Retiro en sucursal' : 'Envío a domicilio';
 }
 function metodoPagoLabel(order) {
-  if (order.metodo_pago === 'tarjeta') return `Tarjeta — ${order.tarjeta_marca} •••• ${order.tarjeta_last4}`;
+  if (order.metodo_pago === 'tarjeta') return `Tarjeta · ${escapeHtml(order.tarjeta_marca)} ···· ${escapeHtml(order.tarjeta_last4)}`;
   return 'Transferencia bancaria';
 }
 function entregaInfoHtml(order) {
   if (order.tipo_entrega === 'retiro_sucursal') {
-    return `${ICONS.pin(15)} Retiro en sucursal — ${SUCURSAL_DIRECCION}.<br>${SUCURSAL_HORARIO}.`;
+    return `${ICONS.pin(15)} Retiro en sucursal · ${escapeHtml(SUCURSAL_DIRECCION)}.<br>${escapeHtml(SUCURSAL_HORARIO)}.`;
   }
-  return `${ICONS.truck(15)} Envío a domicilio${order.direccion ? ' a ' + order.direccion : ''}. Te avisamos por mail cuando salga.`;
+  return `${ICONS.truck(15)} Envío a domicilio${order.direccion ? ' · ' + escapeHtml(order.direccion) : ''}. Te avisamos por mail cuando salga.`;
 }
 
 // ---------- consultas rápidas ----------

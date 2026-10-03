@@ -86,8 +86,8 @@ function renderProductList() {
     <div class="admin-product-card">
       <div class="thumb"><img src="${productImage(p)}" alt="${p.name}"></div>
       <div>
-        <h4>${p.name}</h4>
-        <div class="meta">${categoryLabel(p.category)} · ${formatARS(p.price)}</div>
+        <h4>${escapeHtml(p.name)}</h4>
+        <div class="meta">${escapeHtml(categoryLabel(p.category))} · ${formatARS(p.price)} · ${p.stock} disponibles</div>
       </div>
       <div class="actions">
         <button class="btn btn-secondary btn-sm" data-edit="${p.id}">Editar</button>
@@ -124,7 +124,7 @@ function openProductModal(product) {
       <form id="product-form">
         <div class="field">
           <label for="pf-name">Nombre</label>
-          <input type="text" id="pf-name" required value="${product ? product.name.replace(/"/g, '&quot;') : ''}">
+          <input type="text" id="pf-name" required value="${product ? escapeHtml(product.name) : ''}">
         </div>
         <div class="field">
           <label for="pf-category">Categoría</label>
@@ -135,6 +135,11 @@ function openProductModal(product) {
         <div class="field">
           <label for="pf-price">Precio (ARS)</label>
           <input type="number" id="pf-price" min="0" step="50" required value="${product ? product.price : ''}">
+        </div>
+        <div class="field">
+          <label for="pf-stock">Stock disponible</label>
+          <input type="number" id="pf-stock" min="0" max="9999" step="1" required value="${product ? product.stock : '10'}">
+
         </div>
         <div class="field">
           <label for="pf-desc">Descripción</label>
@@ -181,6 +186,7 @@ function openProductModal(product) {
       name: document.getElementById('pf-name').value.trim(),
       category: document.getElementById('pf-category').value,
       price: Math.max(0, parseInt(document.getElementById('pf-price').value, 10) || 0),
+      stock: Math.max(0, parseInt(document.getElementById('pf-stock').value, 10) || 0),
       desc: document.getElementById('pf-desc').value.trim(),
       img: modalUploadedImg,
     };
