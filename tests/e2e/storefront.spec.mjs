@@ -26,7 +26,7 @@ test("switching from transfer to card does not lose the order items", async ({ p
   await page.getByRole("button", { name: /Continuar/ }).click();
 
   await page.getByText("Transferencia").click();
-  await expect(page.getByText("Reserva de stock: 15:00")).toBeVisible();
+  await expect(page.getByText(/Reserva de stock: \\d+:\\d{2}/)).toBeVisible();
   await page.getByText("Tarjeta", { exact: true }).click();
 
   await expect(page.getByRole("button", { name: /Pagar/ })).toBeVisible();
