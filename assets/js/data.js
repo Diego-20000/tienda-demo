@@ -64,3 +64,18 @@ const SEED_PRODUCTS = [
 function formatARS(n) {
   return '$' + Math.round(n).toLocaleString('es-AR');
 }
+
+
+/* Stock inicial de demostración. En una tienda real vendría de la base de datos. */
+const SEED_STOCK = {
+  p01: 14, p02: 9, p03: 24, p04: 7, p05: 18, p06: 21,
+  p07: 12, p08: 16, p09: 10, p10: 20, p11: 6, p12: 13,
+  p13: 22, p14: 10, p15: 8, p16: 9, p17: 15,
+  p18: 11, p19: 9, p20: 7, p21: 14,
+  p22: 17, p23: 8, p24: 16, p25: 19, p26: 10,
+  p27: 12, p28: 14, p29: 6, p30: 8,
+};
+
+SEED_PRODUCTS.forEach((product) => {
+  product.stock = SEED_STOCK[product.id] ?? 10;
+});
