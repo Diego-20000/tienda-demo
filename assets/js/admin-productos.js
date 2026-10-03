@@ -86,7 +86,7 @@ function renderProductList() {
     <div class="admin-product-card">
       <div class="thumb"><img src="${productImage(p)}" alt="${p.name}"></div>
       <div>
-        <h4>${p.name}</h4>
+        <h4>${escapeHtml(p.name)}</h4>
         <div class="meta">${escapeHtml(categoryLabel(p.category))} · ${formatARS(p.price)} · ${p.stock} disponibles</div>
       </div>
       <div class="actions">
@@ -124,7 +124,7 @@ function openProductModal(product) {
       <form id="product-form">
         <div class="field">
           <label for="pf-name">Nombre</label>
-          <input type="text" id="pf-name" required value="${product ? product.name.replace(/"/g, '&quot;') : ''}">
+          <input type="text" id="pf-name" required value="${product ? escapeHtml(product.name) : ''}">
         </div>
         <div class="field">
           <label for="pf-category">Categoría</label>
